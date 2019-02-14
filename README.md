@@ -8,3 +8,23 @@
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
+
+## Install
+```js
+npm install
+```
+Requires node >=6.0.0
+
+## Example Usage
+
+## FAQ
+
+## Inspiration
+
+## Contributing
+[See the CONTRIBUTING file here](CONTRIBUTING.md)
+
+## License
+[MIT](LICENSE) 
+
+Copyright (c) [Anton Lukichev](https://github.com/AntonLukichev)
