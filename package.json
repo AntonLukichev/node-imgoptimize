@@ -4,8 +4,8 @@
   "description": "Proxy server for image resizing on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
-    "test": "",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "pretest": "eslint --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",

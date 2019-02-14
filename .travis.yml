@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "node"
+notifications:
+  # email: false
+  email:
+    recipients:
+      - anton@lukichev.pro
+    on_success: never # default: change
+    on_failure: always # default: always
+before_install:
+  - "npm i -g npm@^6"
+cache: npm
+branches:
+  only:
+    - master
+script: 'true'  # ToDo npm test
