@@ -4,6 +4,7 @@
 ![](https://img.shields.io/node/v/fastify/latest.svg?style=flat-square)
 ![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)
 
+[![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg)](https://codecov.io/gh/AntonLukichev/imgresizer)
 ![](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
 
@@ -13,9 +14,14 @@ Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 ```js
 npm install
 ```
-Requires node >=6.0.0
+Requires node >=6.0.0, but better version >=8.
 
 ## Example Usage
+
+```http request
+{url}?width=500&height=500
+```
+
 
 ## FAQ
 

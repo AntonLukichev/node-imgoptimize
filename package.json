@@ -25,9 +25,13 @@
     "url": "https://github.com/AntonLukichev/imgresizer/issues"
   },
   "homepage": "https://github.com/AntonLukichev/imgresizer#readme",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "fastify": "^1.14.1",
+    "fastify-response-time": "^1.1.0",
     "fastify-url-data": "^2.2.2",
     "sharp": "^0.21.3"
   },
