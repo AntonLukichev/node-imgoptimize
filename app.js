@@ -33,12 +33,12 @@ const parseReq = (url) => {
 const isFileExists = (filename, img, acceptWebp) => {
   const ext = acceptWebp ? '.jpeg' : '.webp'
   const destFile = path.join(CONFIG.destinationFolder, path.parse(filename).dir, path.parse(filename).name + `_w${img.w}_` + `h${img.h}_` + `q${img.q}` + ext)
-  // ToDo add requred extention from request headers
   return fs.existsSync(destFile)
 }
 
 const isAcceptWebp = (accept) => {
-  return false
+  const patternWebp = /image\/webp/
+  return accept.match(patternWebp)
 }
 
 fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
