@@ -1,22 +1,25 @@
-//  const axios = require('axios')
-//  const sharp = require('sharp')
+const axios = require('axios')
+const sharp = require('sharp')
 const qs = require('querystring')
 const fs = require('fs')
 const path = require('path')
-//  const CONFIG = require('./config')
 
 const fastify = require('fastify')({
   logger: true
 })
 const CONFIG = require('./config')
 
-fastify.register(require('fastify-url-data'), (err) => {
-  if (err) throw err
-})
+fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
 fastify.register(require('fastify-response-time'))
+fastify.register(require('fastify-static'), { root: __dirname })
 
 fastify.get('/ping', async (req, rep) => {
   return { pong: true }
+})
+
+fastify.get('/test', async (req, rep) => {
+  await processingImg({ w: 500, h: null, q: 80 }, './src_img/photo-1550223640-94702927ef88.jpeg', 'test.webp', true)
+  await rep.sendFile('test.webp')
 })
 
 const parseReq = (url) => {
@@ -30,34 +33,139 @@ const parseReq = (url) => {
   return data
 }
 
-const isFileExists = (filename, img, acceptWebp) => {
-  const ext = acceptWebp ? '.jpeg' : '.webp'
-  const destFile = path.join(CONFIG.destinationFolder, path.parse(filename).dir, path.parse(filename).name + `_w${img.w}_` + `h${img.h}_` + `q${img.q}` + ext)
-  return fs.existsSync(destFile)
+const isFileExists = (fileName) => {
+  return fs.existsSync(fileName)
 }
 
 const isAcceptWebp = (accept) => {
   const patternWebp = /image\/webp/
-  return accept.match(patternWebp)
+  return !!accept.match(patternWebp)
+}
+
+const getSourceFilename = (reqImg) => {
+  const filename = path.parse(reqImg.filename)
+  return path.join(
+    CONFIG.originalFolder,
+    filename.dir,
+    filename.name + filename.ext
+  )
+}
+
+const getDestFileName = (reqImg, acceptWebp) => {
+  const filename = reqImg.filename
+  const img = reqImg.img
+  const imgW = img.w ? `_w${img.w}_` : ``
+  const imgH = img.h ? `_h${img.h}_` : ``
+  const imgQ = img.q ? `q${img.q}.` : `.`
+  const ext = acceptWebp ? 'webp' : 'jpeg'
+  // ToDo add another formats
+  const destFile = path.join(
+    CONFIG.destinationFolder,
+    path.parse(filename).dir,
+    path.parse(filename).name + imgW + imgH + imgQ + ext)
+  return destFile
+}
+
+const isAllowFile = (contentType) => {
+  return CONFIG.allowTypes.includes(contentType)
+}
+
+const axiosGetFile = axios.create(CONFIG.axiosConfig)
+const axiosGetImg = async (imgUrl, saveImgFile) => {
+  let answer = false
+  try {
+    fs.mkdirSync(path.parse(saveImgFile).dir, { recursive: true })
+    await axiosGetFile(imgUrl)
+      .then((response) => {
+        response.data.pipe(fs.createWriteStream(saveImgFile))
+        console.log(`download complete ${imgUrl} -> ${response.status} ${response.headers['content-length']}`)
+        answer = true
+      })
+  } catch (error) {
+    if (error.response) {
+      console.error(error.response.data)
+      console.error(error.response.status)
+    } else if (error.request) {
+      console.error(error.request)
+    } else {
+      console.error(error.message)
+    }
+    console.error(`axiosGetImg ${imgUrl}`, error.config)
+  }
+  return answer
+}
+const downloadSourceFile = (reqUrl, saveFilename) => {
+  const url = CONFIG.baseURL + reqUrl
+  return axiosGetImg(url, saveFilename)
+}
+
+const processingImg = (reqImg, sourceFilename, destFilename, acceptWebp) => {
+  const imgOptions = {
+    width: reqImg.w,
+    height: reqImg.h,
+    quality: reqImg.q,
+    fit: CONFIG.defaultFit
+  }
+  let options = {}
+  let imgFormat = 'jpeg'
+  switch (acceptWebp) {
+    case true:
+      options = { ...CONFIG.webpOptions }
+      imgFormat = 'webp'
+      break
+    default:
+      options = { ...CONFIG.jpegOptions }
+      break
+  }
+  fastify.log.info(`check file exists (${sourceFilename})`, isFileExists(sourceFilename))
+  sharp(sourceFilename)
+    .resize(imgOptions)
+    .toFormat(imgFormat, options)
+    .toFile(destFilename)
+    .then(info => {
+      console.log(info)
+      return true
+    })
+    .catch(err => {
+      fastify.log.error(err)
+      return false
+    })
 }
 
 fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
-  const urlData = req.urlData()
-  // parse parameters
-  const reqFile = parseReq(urlData)
+  const urlData = req.urlData() // parse parameters
+  const reqImg = parseReq(urlData)
   const acceptWebp = isAcceptWebp(req.headers.accept)
-  // check cache file
-  // if (!checkCache)
-  //   download file
-  //   check headers
-  //   prepare file
-  // else return file
-  return {
-    path: urlData.path,
-    query: urlData.query,
-    headers: req.headers.accept,
-    reqFile: reqFile,
-    isFileExists: isFileExists(reqFile.filename, reqFile.img, acceptWebp)
+  const sourceFilename = getSourceFilename(reqImg)
+  const destFilename = getDestFileName(reqImg, acceptWebp)
+  if (isFileExists(destFilename)) { // check cache file
+    rep.sendFile(destFilename)// return file
+  } else {
+    if (await downloadSourceFile(reqImg.filename, sourceFilename)) {
+      await processingImg(reqImg.img, sourceFilename, destFilename, acceptWebp)
+      // await rep.sendFile(destFilename)
+
+      /* } else {
+        return {
+          error: true,
+          status: `Error processing image ${destFilename}`
+        }
+      } */
+      /* return {
+        path: urlData.path,
+        query: urlData.query,
+        headers: req.headers.accept,
+        reqImg: reqImg,
+        sourceFilename: sourceFilename,
+        destFilename: destFilename,
+        isFileExists: isFileExists(reqImg.filename, reqImg.img, acceptWebp)
+      } */
+    } else {
+      return {
+        error: true,
+        status: `Error download original file ${reqImg.filename}`
+      }
+    }
   }
 })
 /*

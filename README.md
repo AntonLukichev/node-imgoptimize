@@ -9,19 +9,44 @@
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
+Automatic recognition of browser support formats WebP
 
 ## Install
 ```js
 npm install
 ```
-Requires node >=6.0.0, but better version >=8.
+Requires node >= 10.12, but I recommended use 10.x LTS
 
 ## Example Usage
 
 ```http request
-{url}?width=500&height=500
+{url}?w=500&q=80
+```
+support parameters (after "?"):
+
+**w**/**width** - image width;<br>
+**h**/**height** - image height;<br>
+**q**/**qualty** - image quality, 80 recommended for JPEG and WebP;<br>
+
+## Example config
+Edit defaults config for you need  
+```
+./config/config.js
+./config/server.js
 ```
 
+## ToDo
+I plan to implement in the future:
+* add multiple pathURI
+* add support another formats (GIF, PNG, SVG...)
+* divide the functionality into modules up to version 1.0.0
+* documentation API in Swagger
+* add test (Jest, Mocha)
+* add docker
+* add support HTTP2
+* add DDoS protection
+* add support redis/mongo for cache info
+* add image operations (rotate, blur, normalise...)
 
 ## FAQ
 
