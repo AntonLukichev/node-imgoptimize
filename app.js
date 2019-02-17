@@ -198,7 +198,7 @@ fastify.get('/', options, async function (request, reply) {
 
 const start = async () => {
   try {
-    await fastify.listen(CONFIG.httpPort, (err, address) => {
+    await fastify.listen(CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
       if (err) {
         fastify.log.error(err)
         process.exit(1)
