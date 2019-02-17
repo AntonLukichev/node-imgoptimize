@@ -123,7 +123,7 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
   writable.on('finish', function () {
     console.log('done write file')
   }) */
-  const inputBuffer = fs.readFileSync(sourceFilename)
+  // const inputBuffer = fs.readFileSync(sourceFilename)
   let successful = false
   let options = {}
   let imgFormat = 'jpeg'
@@ -136,8 +136,8 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
       options = { ...CONFIG.jpegOptions }
       break
   }
-  console.log(inputBuffer)
-  sharp(inputBuffer)
+  // console.log(inputBuffer)
+  sharp(sourceFilename)
     .resize(imgOptions)
     .toFormat(imgFormat, options)
     .toFile(destFilename)
