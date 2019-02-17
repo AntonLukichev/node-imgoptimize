@@ -50,9 +50,9 @@ const isAcceptWebp = (accept) => {
 const getSourceFilename = (reqImg) => {
   const filename = path.parse(reqImg.filename)
   return path.join(
-    __dirname,
+    /* __dirname,
     CONFIG.originalFolder,
-    filename.dir,
+    filename.dir, */
     filename.base
   )
 }
@@ -66,9 +66,9 @@ const getDestFileName = (reqImg, acceptWebp) => {
   const ext = acceptWebp ? 'webp' : 'jpeg'
   // ToDo add another formats
   const destFile = path.join(
-    __dirname,
+    /* __dirname,
     CONFIG.destinationFolder,
-    path.parse(filename).dir,
+    path.parse(filename).dir, */
     path.parse(filename).name + imgW + imgH + imgQ + ext)
   return destFile
 }
