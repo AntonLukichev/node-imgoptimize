@@ -1,14 +1,14 @@
 module.exports = {
-  // baseURL: 'https://www.tui.ru',
-  // pathURI: '/getmedia/',
-  baseURL: 'https://images.unsplash.com',
-  pathURI: '/photo',
+  baseURL: 'https://www.tui.ru',
+  pathURI: '/getmedia/',
+  //  baseURL: 'https://images.unsplash.com',
+  //  pathURI: '/photo',
   width: null,
   height: null,
   quality: 80,
   fit: 'cover',
-  originalFolder: './src_img',
-  destinationFolder: './small_img',
+  originalFolder: '/src_img',
+  destinationFolder: '/small_img',
   allowTypes: [
     'image/jpeg',
     'image/webp'
@@ -19,6 +19,6 @@ module.exports = {
   },
   webpOptions: {
     //  alphaQuality: 100,
-    //  lossless: true,
+    //  lossless: true
   }
 }
