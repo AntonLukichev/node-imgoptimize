@@ -20,7 +20,7 @@ fastify.get('/ping', async (req, rep) => {
 fastify.get('/test', async (req, rep) => {
   const img = await processingImg(
     { w: 1500, h: null, q: 100 },
-    'C:\\_GIT\\imgresizer\\src_img\\getmedia\\284af62e-ae99-4273-b153-6d0bac746ec4\\18-081-17_2500x540',
+    'eilat-378-567-1-compressor',
     'test.webp',
     true)
   console.log(img)
@@ -79,7 +79,9 @@ const isAllowFile = (contentType) => {
 }
 
 const createDir = (filename) => {
-  fs.mkdirSync(path.parse(filename).dir, { recursive: true })
+  if (path.parse(filename).dir) {
+    fs.mkdirSync(path.parse(filename).dir, { recursive: true })
+  }
 }
 
 const axiosGetFile = axios.create(CONFIG.axiosConfig)
@@ -136,8 +138,8 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
       options = { ...CONFIG.jpegOptions }
       break
   }
-  // console.log(inputBuffer)
-  sharp(sourceFilename)
+  const tempFile = fs.readFileSync(sourceFilename)
+  sharp(tempFile)
     .resize(imgOptions)
     .toFormat(imgFormat, options)
     .toFile(destFilename)
