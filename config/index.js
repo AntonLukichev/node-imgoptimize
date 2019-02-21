@@ -9,10 +9,11 @@ module.exports = {
   defaultWidth: config.width,
   defaultHeight: config.height,
   defaultQuality: config.quality,
+  defaultFormat: config.format,
   defaultFit: config.fit,
   originalFolder: config.originalFolder,
   destinationFolder: config.destinationFolder,
-  allowTypes: config.allowTypes,
+  allowFormat: config.allowFormat,
   jpegOptions: config.jpegOptions,
   webpOptions: config.webpOptions,
   axiosConfig: axios.axiosConfig

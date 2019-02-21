@@ -14,10 +14,14 @@ fastify.register(require('fastify-response-time'))
 fastify.register(require('fastify-static'), { root: __dirname })
 
 fastify.get('/ping', async (req, rep) => {
-  return { pong: true }
+  rep.send({ pong: true })
 })
 
-const parseReq = (url) => {
+const getFormat = (format) => {
+  return CONFIG.allowFormat.includes(format) ? format : CONFIG.defaultFormat
+}
+
+const parseReq = (url, acceptWebp) => {
   let data = {}
   data.uri = url.path
   data.query = qs.parse(url.query)
@@ -25,6 +29,12 @@ const parseReq = (url) => {
   data.img.w = parseInt(data.query.width) || parseInt(data.query.w) || CONFIG.defaultWidth
   data.img.h = parseInt(data.query.height) || parseInt(data.query.h) || CONFIG.defaultHeight
   data.img.q = parseInt(data.query.quality) || parseInt(data.query.q) || CONFIG.defaultQuality
+  data.img.f = data.query.format || data.query.f
+  if (acceptWebp && !data.img.f) {
+    data.img.f = 'webp'
+  } else {
+    data.img.f = getFormat(data.img.f)
+  }
   return data
 }
 
@@ -54,13 +64,13 @@ const getSourceFilename = (reqImg) => {
   )
 }
 
-const getDestFileName = (reqImg, acceptWebp) => {
+const getDestFileName = (reqImg) => {
   const filename = reqImg.uri
   const img = reqImg.img
   const imgW = img.w ? `_w${img.w}_` : ``
   const imgH = img.h ? `_h${img.h}_` : ``
   const imgQ = img.q ? `q${img.q}.` : `.`
-  const ext = acceptWebp ? 'webp' : 'jpeg'
+  const ext = img.f
   // ToDo add another formats
   return path.join(
     /* __dirname,
@@ -78,40 +88,6 @@ const createDir = (filename) => {
   if (path.parse(filename).dir) {
     fs.mkdirSync(path.parse(filename).dir, { recursive: true })
   }
-}
-
-const axiosGetFile = axios.create(CONFIG.axiosConfig)
-const axiosGetImg = async (imgUrl, saveImgFile) => {
-  let answer = false
-  try {
-    createDir(saveImgFile)
-    await axiosGetFile(imgUrl)
-      .then((response) => {
-        const writeStream = fs.createWriteStream(saveImgFile)
-        writeStream.on('finish', () => {
-          console.log('size', getFileSize(saveImgFile))
-        })
-        response.data.pipe(writeStream)
-        console.log(`download complete ${imgUrl} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
-        answer = true
-      })
-  } catch (error) {
-    if (error.response) {
-      console.error(error.response.data)
-      console.error(error.response.status)
-    } else if (error.request) {
-      console.error(error.request)
-    } else {
-      console.error(error.message)
-    }
-    console.error(`axiosGetImg ${imgUrl}`, error.config)
-  }
-  return answer
-}
-const downloadSourceFile = async (reqUrl, saveFilename) => {
-  const url = CONFIG.baseURL + reqUrl
-  const result = await axiosGetImg(url, saveFilename)
-  return result
 }
 
 const processingImg = async (settings, rep) => {
@@ -157,19 +133,24 @@ const getDownloadFile = async (settings, rep) => {
     return processingImg(settings, rep)
   })
   const respData = await axiosGetFile(settings.url)
-    .then((response) => {
+    .then(async (response) => {
       console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
       response.data.pipe(writeStream)
       return response.data
+    })
+    .catch((error) => {
+      console.error(error)
+      rep.send(error)
     })
   return respData
 }
 
 const getSettings = (req) => {
   const urlData = req.urlData()
-  const reqImg = parseReq(urlData)
-  const downFile = CONFIG.baseURL + reqImg.uri
   const acceptWebp = isAcceptWebp(req.headers.accept)
+  const reqImg = parseReq(urlData, acceptWebp)
+  const downFile = CONFIG.baseURL + reqImg.uri
+
   const sourceFilename = getSourceFilename(reqImg)
   const destFilename = getDestFileName(reqImg, acceptWebp)
 

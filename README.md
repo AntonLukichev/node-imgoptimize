@@ -7,6 +7,7 @@
 [![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg)](https://codecov.io/gh/AntonLukichev/imgresizer)
 ![](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
+[![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/imgresizer/badge.svg?targetFile=package.json)](https://snyk.io/test/github/AntonLukichev/imgresizer?targetFile=package.json)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
@@ -19,7 +20,7 @@ Requires node >= 10.12, but I recommended use 10.x LTS
 
 ## Example Usage
 
-```http request
+```
 {url}?w=500&q=80
 ```
 support parameters (after "?"):
@@ -27,12 +28,15 @@ support parameters (after "?"):
 **w**/**width** - image width;<br>
 **h**/**height** - image height;<br>
 **q**/**qualty** - image quality, 80 recommended for JPEG and WebP;<br>
+**f**/**format** - image format, list in config.js and default webp/jpeg;<br>
 
 ## Example config
 Edit defaults config for you need  
 ```
 ./config/config.js
+
 ./config/server.js
+
 ```
 
 ## ToDo

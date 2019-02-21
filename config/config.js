@@ -6,12 +6,14 @@ module.exports = {
   width: null,
   height: null,
   quality: 80,
+  format: 'jpeg',
   fit: 'cover',
   originalFolder: '/src_img',
   destinationFolder: '/small_img',
-  allowTypes: [
-    'image/jpeg',
-    'image/webp'
+  allowFormat: [
+    'jpeg',
+    'webp',
+    'png'
   ],
   jpegOptions: {
     progressive: true,
