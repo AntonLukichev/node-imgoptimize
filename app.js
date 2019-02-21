@@ -99,6 +99,13 @@ const isFileExists = (filename) => {
   return fs.existsSync(filename)
 }
 
+const getFileSize = (filePath) => {
+  const stat = fs.statSync(filePath)
+  const size = stat.size
+  let i = Math.floor(Math.log(size) / Math.log(1024))
+  return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i]
+}
+
 const isAcceptWebp = (accept) => {
   const patternWebp = /image\/webp/
   return !!accept.match(patternWebp)
@@ -147,7 +154,11 @@ const axiosGetImg = async (imgUrl, saveImgFile) => {
     createDir(saveImgFile)
     await axiosGetFile(imgUrl)
       .then((response) => {
-        response.data.pipe(fs.createWriteStream(saveImgFile))
+        const writeStream = fs.createWriteStream(saveImgFile)
+        writeStream.on('finish', () => {
+          console.log('size', getFileSize(saveImgFile))
+        })
+        response.data.pipe(writeStream)
         console.log(`download complete ${imgUrl} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
         answer = true
       })
@@ -189,8 +200,6 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
       options = { ...CONFIG.jpegOptions }
       break
   }
-  const statFile = fs.statSync(sourceFilename)
-  console.log(statFile)
   sharp(sourceFilename)
     .resize(imgOptions)
     .toFormat(imgFormat, options)
