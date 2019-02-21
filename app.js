@@ -17,76 +17,9 @@ fastify.get('/ping', async (req, rep) => {
   return { pong: true }
 })
 
-fastify.get('/test', async (req, rep) => {
-  const img = await processingImg(
-    { w: 1500, h: null, q: 100 },
-    'eilat-378-567-1-compressor',
-    'test.webp',
-    true)
-  console.log(img)
-  await rep.sendFile('test.webp')
-})
-
-fastify.get('/tmp/*', async (req, rep) => {
-  const urlData = req.urlData() // parse parameters
-  const reqImg = parseReq(urlData)
-  const acceptWebp = isAcceptWebp(req.headers.accept)
-  const sourceFilename = getSourceFilename(reqImg)
-  const destFilename = getDestFileName(reqImg, acceptWebp)
-  const img = sharp()
-  let imgResults = false
-  const rs = fs.createReadStream(sourceFilename)
-  rs.on('readable', () => {
-    const data = rs.read()
-    if (data) rs.pipe(img)
-  })
-  rs.on('end', () => {
-    const imgOptions = {
-      width: reqImg.w,
-      height: reqImg.h,
-      quality: reqImg.q,
-      fit: CONFIG.defaultFit
-    }
-    let options = {}
-    let imgFormat = 'jpeg'
-    switch (acceptWebp) {
-      case true:
-        options = { ...CONFIG.webpOptions }
-        imgFormat = 'webp'
-        break
-      default:
-        options = { ...CONFIG.jpegOptions }
-        break
-    }
-    sharp('./' + sourceFilename)
-      .resize(imgOptions)
-      .toFormat(imgFormat, options)
-      .toFile(destFilename)
-      .then(info => {
-        fastify.log.info(info)
-        imgResults = true
-      })
-      .catch(err => {
-        fastify.log.error(err)
-      })
-    // console.log(img)
-  })
-  // await downloadSourceFile(reqImg.filename, sourceFilename)
-  return {
-    path: urlData.path,
-    query: urlData.query,
-    headers: req.headers.accept,
-    reqImg: reqImg,
-    sourceFilename: sourceFilename,
-    destFilename: destFilename,
-    isFileExists: isFileExists(sourceFilename),
-    imgResults: imgResults
-  }
-})
-
 const parseReq = (url) => {
   let data = {}
-  data.filename = url.path
+  data.uri = url.path
   data.query = qs.parse(url.query)
   data.img = {}
   data.img.w = parseInt(data.query.width) || parseInt(data.query.w) || CONFIG.defaultWidth
@@ -112,7 +45,7 @@ const isAcceptWebp = (accept) => {
 }
 
 const getSourceFilename = (reqImg) => {
-  const filename = path.parse(reqImg.filename)
+  const filename = path.parse(reqImg.uri)
   return path.join(
     /* __dirname,
     CONFIG.originalFolder,
@@ -122,7 +55,7 @@ const getSourceFilename = (reqImg) => {
 }
 
 const getDestFileName = (reqImg, acceptWebp) => {
-  const filename = reqImg.filename
+  const filename = reqImg.uri
   const img = reqImg.img
   const imgW = img.w ? `_w${img.w}_` : ``
   const imgH = img.h ? `_h${img.h}_` : ``
@@ -181,17 +114,17 @@ const downloadSourceFile = async (reqUrl, saveFilename) => {
   return result
 }
 
-const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) => {
+const processingImg = async (settings, rep) => {
   const imgOptions = {
-    width: reqImg.w,
-    height: reqImg.h,
-    quality: reqImg.q,
+    width: settings.img.w,
+    height: settings.img.h,
+    quality: settings.img.q,
     fit: CONFIG.defaultFit
   }
   let successful = false
   let options = {}
   let imgFormat = 'jpeg'
-  switch (acceptWebp) {
+  switch (settings.webp) {
     case true:
       options = { ...CONFIG.webpOptions }
       imgFormat = 'webp'
@@ -200,13 +133,15 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
       options = { ...CONFIG.jpegOptions }
       break
   }
-  sharp(sourceFilename)
+  createDir(settings.destination)
+  sharp(settings.source)
     .resize(imgOptions)
     .toFormat(imgFormat, options)
-    .toFile(destFilename)
+    .toFile(settings.destination)
     .then(info => {
       fastify.log.info(info)
       successful = true
+      rep.sendFile(settings.destination)
     })
     .catch(err => {
       fastify.log.error(err)
@@ -214,40 +149,49 @@ const processingImg = async (reqImg, sourceFilename, destFilename, acceptWebp) =
   return successful
 }
 
-fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
-  const urlData = req.urlData() // parse parameters
+const getDownloadFile = async (settings, rep) => {
+  const axiosGetFile = axios.create(CONFIG.axiosConfig)
+  const writeStream = fs.createWriteStream(settings.source)
+  writeStream.on('finish', () => {
+    console.log('save file finish')
+    return processingImg(settings, rep)
+  })
+  const respData = await axiosGetFile(settings.url)
+    .then((response) => {
+      console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
+      response.data.pipe(writeStream)
+      return response.data
+    })
+  return respData
+}
+
+const getSettings = (req) => {
+  const urlData = req.urlData()
   const reqImg = parseReq(urlData)
+  const downFile = CONFIG.baseURL + reqImg.uri
   const acceptWebp = isAcceptWebp(req.headers.accept)
   const sourceFilename = getSourceFilename(reqImg)
   const destFilename = getDestFileName(reqImg, acceptWebp)
-  if (isFileExists(destFilename)) { // check cache file
-    rep.sendFile(destFilename)// return file
+
+  return {
+    url: downFile,
+    img: reqImg.img,
+    source: sourceFilename,
+    destination: destFilename,
+    webp: acceptWebp
+  }
+}
+
+fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
+  const settings = getSettings(req)
+
+  if (isFileExists(settings.destination)) {
+    console.log('img exists')
+    rep.sendFile(settings.destination)
   } else {
-    if (!isFileExists(sourceFilename)) await downloadSourceFile(reqImg.filename, sourceFilename)
-    const imgResults = await processingImg(reqImg.img, sourceFilename, destFilename, acceptWebp)
-    if (imgResults) {
-      await rep.sendFile(destFilename)
-    } else {
-      return {
-        path: urlData.path,
-        query: urlData.query,
-        headers: req.headers.accept,
-        reqImg: reqImg,
-        sourceFilename: sourceFilename,
-        destFilename: destFilename,
-        isFileExists: isFileExists(sourceFilename),
-        imgResults: imgResults
-      }
-    }
+    await getDownloadFile(settings, rep)
   }
 })
-/*
-fastify.get('/', options, async function (request, reply) {
-  var data = await getData()
-  var processed = await processData(data)
-  reply.send(processed)
-})
-*/
 
 const start = async () => {
   try {
