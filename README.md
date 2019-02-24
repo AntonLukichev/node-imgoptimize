@@ -13,10 +13,12 @@ Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
 
 ## Install
-```js
+```bash
 npm install
+mkdir src_img
+mkdir small_img
 ```
-Requires node >= 10.12, but I recommended use 10.x LTS
+Requires node >= 8.0, but I recommended use 10.x LTS
 
 ## Example Usage
 
@@ -25,10 +27,10 @@ Requires node >= 10.12, but I recommended use 10.x LTS
 ```
 support parameters (after "?"):
 
-**w**/**width** - image width;<br>
-**h**/**height** - image height;<br>
-**q**/**qualty** - image quality, 80 recommended for JPEG and WebP;<br>
-**f**/**format** - image format, list in config.js and default webp/jpeg;<br>
+**w** - image width;<br>
+**h** - image height;<br>
+**q** - image quality, 80 recommended for JPEG and WebP;<br>
+**f** - image format, list in config.js and default webp/jpeg;<br>
 
 ## Example config
 Edit defaults config for you need  
@@ -40,6 +42,16 @@ Edit defaults config for you need
 ```
 
 ## ToDo
+
+v0.2.0:
+
+* generate source url with original request parameters
+* caching original file
+* custom log level
+
+v0.3.0:
+* expand API
+
 I plan to implement in the future:
 * add multiple pathURI
 * add support another formats (GIF, PNG, SVG...)
@@ -52,9 +64,10 @@ I plan to implement in the future:
 * add support redis/mongo for cache info
 * add image operations (rotate, blur, normalise...)
 
-## FAQ
+## Lazy loading
+If you'd like to lazy load images, I recommend using [lazysizes](https://github.com/aFarkas/lazysizes).
 
-## Inspiration
+## FAQ
 
 ## Contributing
 [See the CONTRIBUTING file here](CONTRIBUTING.md)

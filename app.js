@@ -57,9 +57,7 @@ const isAcceptWebp = (accept) => {
 const getSourceFilename = (reqImg) => {
   const filename = path.parse(reqImg.uri)
   return path.join(
-    /* __dirname,
     CONFIG.originalFolder,
-    filename.dir, */
     filename.base
   )
 }
@@ -73,21 +71,13 @@ const getDestFileName = (reqImg) => {
   const ext = img.f
   // ToDo add another formats
   return path.join(
-    /* __dirname,
     CONFIG.destinationFolder,
-    path.parse(filename).dir, */
     path.parse(filename).name + imgW + imgH + imgQ + ext)
 }
 
 const isAllowFile = (contentType) => {
   // !contentType.startsWith('image/')
   return CONFIG.allowTypes.includes(contentType)
-}
-
-const createDir = (filename) => {
-  if (path.parse(filename).dir) {
-    fs.mkdirSync(path.parse(filename).dir, { recursive: true })
-  }
 }
 
 const processingImg = async (settings, rep) => {
@@ -100,16 +90,20 @@ const processingImg = async (settings, rep) => {
   let successful = false
   let options = {}
   let imgFormat = 'jpeg'
-  switch (settings.webp) {
-    case true:
-      options = { ...CONFIG.webpOptions }
+  switch (settings.img.f) {
+    case 'webp':
+      options = { ...CONFIG.webpOptions,
+        quality: settings.img.q
+      }
       imgFormat = 'webp'
       break
     default:
-      options = { ...CONFIG.jpegOptions }
+      options = { ...CONFIG.jpegOptions,
+        quality: settings.img.q
+      }
       break
   }
-  createDir(settings.destination)
+  sharp.cache(false)
   sharp(settings.source)
     .resize(imgOptions)
     .toFormat(imgFormat, options)
@@ -165,6 +159,7 @@ const getSettings = (req) => {
 
 fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
   const settings = getSettings(req)
+  fastify.log.info('settings request:', settings)
 
   if (isFileExists(settings.destination)) {
     console.log('img exists')
