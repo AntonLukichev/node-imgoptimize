@@ -14,4 +14,5 @@ cache: npm
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 script: 'true'  # ToDo npm test
