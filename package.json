@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/AntonLukichev/imgresizer#readme",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",

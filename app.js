@@ -23,18 +23,25 @@ const getFormat = (format) => {
 
 const parseReq = (url, acceptWebp) => {
   let data = {}
-  data.uri = url.path
   data.query = qs.parse(url.query)
+  //  parsing parameters in equest
   data.img = {}
-  data.img.w = parseInt(data.query.width) || parseInt(data.query.w) || CONFIG.defaultWidth
-  data.img.h = parseInt(data.query.height) || parseInt(data.query.h) || CONFIG.defaultHeight
-  data.img.q = parseInt(data.query.quality) || parseInt(data.query.q) || CONFIG.defaultQuality
-  data.img.fm = data.query.fm
-  if (acceptWebp && !data.img.fm) {
+  data.img.w = parseInt(data.query.w) || CONFIG.defaultWidth
+  data.img.h = parseInt(data.query.h) || CONFIG.defaultHeight
+  data.img.q = parseInt(data.query.q) || CONFIG.defaultQuality
+  if (acceptWebp && !data.query.fm) {
     data.img.fm = 'webp'
   } else {
-    data.img.fm = getFormat(data.img.fm)
+    data.img.fm = getFormat(data.query.fm)
   }
+  //  query formation
+  delete data.query.w
+  delete data.query.h
+  delete data.query.q
+  delete data.query.fm
+  data.uri = url.path + '?' + qs.stringify(data.query)
+  data.filename = url.path
+  data.sourceFilename = qs.escape(data.uri)
   return data
 }
 
@@ -55,15 +62,15 @@ const isAcceptWebp = (accept) => {
 }
 
 const getSourceFilename = (reqImg) => {
-  const filename = path.parse(reqImg.uri)
+  // const filename = path.parse(reqImg.sourceFilename)
   return path.join(
     CONFIG.originalFolder,
-    filename.base
+    reqImg.sourceFilename
   )
 }
 
 const getDestFileName = (reqImg) => {
-  const filename = reqImg.uri
+  const filename = reqImg.filename
   const img = reqImg.img
   const imgW = img.w ? `_w${img.w}_` : ``
   const imgH = img.h ? `_h${img.h}_` : ``

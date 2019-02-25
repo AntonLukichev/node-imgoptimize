@@ -19,7 +19,7 @@ npm install
 mkdir src_img
 mkdir small_img
 ```
-Requires node >= 8.0, but I recommended use 10.x LTS
+Requires node >= 6.0, but I recommended use 10.x LTS
 
 ## Example Usage
 
@@ -46,12 +46,12 @@ Edit defaults config for you need
 
 v0.2.0:
 
-* generate source url with original request parameters
-* caching original file
-* custom log level
+- [x] generate source url with original request parameters
+- [ ] caching original file
+- [ ] custom log level
 
 v0.3.0:
-* expand API
+- [ ] expand API
 
 I plan to implement in the future:
 * add multiple pathURI
