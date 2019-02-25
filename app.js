@@ -11,10 +11,12 @@ const fastify = require('fastify')({
 })
 const routes = require('./routes')
 const CONFIG = require('./config')
+const swagger = require('./config/swagger')
 
 fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
 // fastify.register(require('fastify-response-time'))
 fastify.register(require('fastify-static'), { root: __dirname })
+fastify.register(require('fastify-swagger'), swagger.options)
 
 routes.forEach((route, index) => {
   fastify.route(route)
@@ -199,6 +201,7 @@ const start = async () => {
         process.exit(1)
       }
     })
+    fastify.swagger()
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
