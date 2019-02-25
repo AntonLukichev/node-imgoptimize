@@ -12,8 +12,7 @@ module.exports = {
   destinationFolder: 'small_img',
   allowFormat: [
     'jpeg',
-    'webp',
-    'png'
+    'webp'
   ],
   jpegOptions: {
     progressive: true,

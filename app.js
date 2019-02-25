@@ -10,7 +10,7 @@ const fastify = require('fastify')({
 const CONFIG = require('./config')
 
 fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
-fastify.register(require('fastify-response-time'))
+// fastify.register(require('fastify-response-time'))
 fastify.register(require('fastify-static'), { root: __dirname })
 
 fastify.get('/ping', async (req, rep) => {
@@ -29,11 +29,11 @@ const parseReq = (url, acceptWebp) => {
   data.img.w = parseInt(data.query.width) || parseInt(data.query.w) || CONFIG.defaultWidth
   data.img.h = parseInt(data.query.height) || parseInt(data.query.h) || CONFIG.defaultHeight
   data.img.q = parseInt(data.query.quality) || parseInt(data.query.q) || CONFIG.defaultQuality
-  data.img.f = data.query.format || data.query.f
-  if (acceptWebp && !data.img.f) {
-    data.img.f = 'webp'
+  data.img.fm = data.query.fm
+  if (acceptWebp && !data.img.fm) {
+    data.img.fm = 'webp'
   } else {
-    data.img.f = getFormat(data.img.f)
+    data.img.fm = getFormat(data.img.fm)
   }
   return data
 }
@@ -68,7 +68,7 @@ const getDestFileName = (reqImg) => {
   const imgW = img.w ? `_w${img.w}_` : ``
   const imgH = img.h ? `_h${img.h}_` : ``
   const imgQ = img.q ? `q${img.q}.` : `.`
-  const ext = img.f
+  const ext = img.fm
   // ToDo add another formats
   return path.join(
     CONFIG.destinationFolder,
@@ -90,7 +90,7 @@ const processingImg = async (settings, rep) => {
   let successful = false
   let options = {}
   let imgFormat = 'jpeg'
-  switch (settings.img.f) {
+  switch (settings.img.fm) {
     case 'webp':
       options = { ...CONFIG.webpOptions,
         quality: settings.img.q

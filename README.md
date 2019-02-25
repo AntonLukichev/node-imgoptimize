@@ -31,7 +31,7 @@ support parameters (after "?"):
 **w** - image width;<br>
 **h** - image height;<br>
 **q** - image quality, 80 recommended for JPEG and WebP;<br>
-**f** - image format, list in config.js and default webp/jpeg;<br>
+**fm** - image format, list in config.js and default jpeg or webp (if browser supports it);<br>
 
 ## Example config
 Edit defaults config for you need  
