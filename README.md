@@ -2,10 +2,10 @@
 [![Build Status](https://img.shields.io/travis/AntonLukichev/imgresizer/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/imgresizer)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 ![](https://img.shields.io/node/v/fastify/latest.svg?style=flat-square)
-![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)
+![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)(LICENSE)
 
 [![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/AntonLukichev/imgresizer)
-![](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)
+[![release](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)](https://github.com/AntonLukichev/imgresizer/releases)
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
 [![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/imgresizer/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/imgresizer?targetFile=package.json)
 [![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/imgresizer.svg?style=flat-square)](https://greenkeeper.io/)
