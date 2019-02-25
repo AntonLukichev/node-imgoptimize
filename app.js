@@ -9,14 +9,15 @@ const boom = require('boom')
 const fastify = require('fastify')({
   logger: true
 })
+const routes = require('./routes')
 const CONFIG = require('./config')
 
 fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
 // fastify.register(require('fastify-response-time'))
 fastify.register(require('fastify-static'), { root: __dirname })
 
-fastify.get('/ping', async (req, rep) => {
-  rep.send({ pong: true })
+routes.forEach((route, index) => {
+  fastify.route(route)
 })
 
 const getFormat = (format) => {
@@ -187,6 +188,8 @@ fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
     await getDownloadFile(settings, rep)
   }
 })
+
+
 
 const start = async () => {
   try {
