@@ -4,10 +4,11 @@
 ![](https://img.shields.io/node/v/fastify/latest.svg?style=flat-square)
 ![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)
 
-[![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg)](https://codecov.io/gh/AntonLukichev/imgresizer)
+[![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/AntonLukichev/imgresizer)
 ![](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)
 ![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
-[![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/imgresizer/badge.svg?targetFile=package.json)](https://snyk.io/test/github/AntonLukichev/imgresizer?targetFile=package.json) [![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/imgresizer.svg)](https://greenkeeper.io/)
+[![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/imgresizer/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/imgresizer?targetFile=package.json)
+[![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/imgresizer.svg?style=flat-square)](https://greenkeeper.io/)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
