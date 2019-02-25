@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "boom": "^7.3.0",
     "fastify": "^2.0.0",
     "fastify-response-time": "^1.1.0",
     "fastify-static": "^2.3.4",

@@ -4,6 +4,7 @@ const qs = require('querystring')
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
+const boom = require('boom')
 
 const fastify = require('fastify')({
   logger: true
@@ -84,9 +85,9 @@ const getDestFileName = (reqImg) => {
     filename + imgW + imgH + imgQ + ext)
 }
 
-const isAllowFile = (contentType) => {
+const isAllowFileType = (contentType) => {
   // !contentType.startsWith('image/')
-  return CONFIG.allowTypes.includes(contentType)
+  return CONFIG.allowFormat.includes(contentType)
 }
 
 const processingImg = async (settings, rep) => {
@@ -142,12 +143,15 @@ const getDownloadFile = async (settings, rep) => {
     })
     const respData = await axiosGetFile(settings.url)
       .then(async (response) => {
-        console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
-        response.data.pipe(writeStream)
-        return response.data
+        if (isAllowFileType(response.headers['content-type']) && response.status === 200) {
+          console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
+          response.data.pipe(writeStream)
+          return response.data
+        } else {
+          boom.unsupportedMediaType('source file incorrect format')
+        }
       })
       .catch((error) => {
-        console.error(error)
         rep.send(error)
       })
     return respData
