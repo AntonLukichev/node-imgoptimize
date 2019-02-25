@@ -47,7 +47,7 @@ Edit defaults config for you need
 v0.2.0:
 
 - [x] generate source url with original request parameters
-- [ ] caching original file
+- [x] caching original file
 - [ ] custom log level
 
 v0.3.0:

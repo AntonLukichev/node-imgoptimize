@@ -3,6 +3,7 @@ const sharp = require('sharp')
 const qs = require('querystring')
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 
 const fastify = require('fastify')({
   logger: true
@@ -22,6 +23,7 @@ const getFormat = (format) => {
 }
 
 const parseReq = (url, acceptWebp) => {
+  const hash = crypto.createHash('md5')
   let data = {}
   data.query = qs.parse(url.query)
   //  parsing parameters in equest
@@ -41,7 +43,8 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.fm
   data.uri = url.path + '?' + qs.stringify(data.query)
   data.filename = url.path
-  data.sourceFilename = qs.escape(data.uri)
+  data.base64 = Buffer.from(data.uri).toString('base64')
+  data.sourceFilename = hash.update(data.base64).digest('hex')
   return data
 }
 
@@ -62,7 +65,6 @@ const isAcceptWebp = (accept) => {
 }
 
 const getSourceFilename = (reqImg) => {
-  // const filename = path.parse(reqImg.sourceFilename)
   return path.join(
     CONFIG.originalFolder,
     reqImg.sourceFilename
@@ -70,7 +72,7 @@ const getSourceFilename = (reqImg) => {
 }
 
 const getDestFileName = (reqImg) => {
-  const filename = reqImg.filename
+  const filename = reqImg.sourceFilename
   const img = reqImg.img
   const imgW = img.w ? `_w${img.w}_` : ``
   const imgH = img.h ? `_h${img.h}_` : ``
@@ -79,7 +81,7 @@ const getDestFileName = (reqImg) => {
   // ToDo add another formats
   return path.join(
     CONFIG.destinationFolder,
-    path.parse(filename).name + imgW + imgH + imgQ + ext)
+    filename + imgW + imgH + imgQ + ext)
 }
 
 const isAllowFile = (contentType) => {
@@ -115,35 +117,41 @@ const processingImg = async (settings, rep) => {
     .resize(imgOptions)
     .toFormat(imgFormat, options)
     .toFile(settings.destination)
-    .then(info => {
+    .then((info) => {
       fastify.log.info(info)
       successful = true
       rep.sendFile(settings.destination)
     })
-    .catch(err => {
-      fastify.log.error(err)
+    .catch((error) => {
+      fastify.log.error(error)
+      rep.send(error)
     })
   return successful
 }
 
 const getDownloadFile = async (settings, rep) => {
-  const axiosGetFile = axios.create(CONFIG.axiosConfig)
-  const writeStream = fs.createWriteStream(settings.source)
-  writeStream.on('finish', () => {
-    console.log('save file finish')
+  if (isFileExists(settings.source)) {
+    console.log('source img exists')
     return processingImg(settings, rep)
-  })
-  const respData = await axiosGetFile(settings.url)
-    .then(async (response) => {
-      console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
-      response.data.pipe(writeStream)
-      return response.data
+  } else {
+    const axiosGetFile = axios.create(CONFIG.axiosConfig)
+    const writeStream = fs.createWriteStream(settings.source)
+    writeStream.on('finish', () => {
+      console.log('save file finish')
+      return processingImg(settings, rep)
     })
-    .catch((error) => {
-      console.error(error)
-      rep.send(error)
-    })
-  return respData
+    const respData = await axiosGetFile(settings.url)
+      .then(async (response) => {
+        console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
+        response.data.pipe(writeStream)
+        return response.data
+      })
+      .catch((error) => {
+        console.error(error)
+        rep.send(error)
+      })
+    return respData
+  }
 }
 
 const getSettings = (req) => {
