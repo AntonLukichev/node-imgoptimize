@@ -46,9 +46,8 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.q
   delete data.query.fm
   data.uri = url.path + '?' + qs.stringify(data.query)
-  data.filename = url.path
-  data.base64 = Buffer.from(data.uri).toString('base64')
-  data.sourceFilename = hash.update(data.base64).digest('hex')
+  // data.filename = url.path
+  data.sourceFilename = hash.update(data.uri).digest('hex')
   return data
 }
 
@@ -144,8 +143,9 @@ const getDownloadFile = async (settings, rep) => {
       console.log('save file finish')
       return processingImg(settings, rep)
     })
+    console.log(`start download file -> ${settings.url}`)
     const respData = await axiosGetFile(settings.url)
-      .then(async (response) => {
+      .then((response) => {
         if (isAllowFileType(response.headers['content-type']) && response.status === 200) {
           console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
           response.data.pipe(writeStream)
@@ -165,13 +165,13 @@ const getSettings = (req) => {
   const urlData = req.urlData()
   const acceptWebp = isAcceptWebp(req.headers.accept)
   const reqImg = parseReq(urlData, acceptWebp)
-  const downFile = CONFIG.baseURL + reqImg.uri
+  const url = CONFIG.baseURL + reqImg.uri
 
   const sourceFilename = getSourceFilename(reqImg)
   const destFilename = getDestFileName(reqImg, acceptWebp)
 
   return {
-    url: downFile,
+    url: url,
     img: reqImg.img,
     source: sourceFilename,
     destination: destFilename,
@@ -191,8 +191,6 @@ fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
   }
 })
 
-
-
 const start = async () => {
   try {
     await fastify.listen(CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
@@ -202,6 +200,7 @@ const start = async () => {
       }
     })
     fastify.swagger()
+    // add create folder: originalFolder destinationFolder
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
