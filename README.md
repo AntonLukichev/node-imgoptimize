@@ -18,6 +18,9 @@ Automatic recognition of browser support formats WebP
 npm install
 mkdir src_img
 mkdir small_img
+cd ./config/
+cp ./config.example.js ./config.js
+cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 

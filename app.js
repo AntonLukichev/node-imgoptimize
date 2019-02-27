@@ -88,8 +88,13 @@ const getDestFileName = (reqImg) => {
 }
 
 const isAllowFileType = (contentType) => {
-  // !contentType.startsWith('image/')
-  return CONFIG.allowFormat.includes(contentType)
+  // contentType.startsWith('image/')
+  const type = contentType.split('/')
+  let allowType = false
+  if (type[0] === 'image' && CONFIG.allowFormat.includes(type[1])) {
+    allowType = true
+  }
+  return allowType
 }
 
 const processingImg = async (settings, rep) => {

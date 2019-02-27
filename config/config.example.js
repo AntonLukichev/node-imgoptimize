@@ -1,8 +1,6 @@
 module.exports = {
-  baseURL: 'http://www.tui.ru', // 'https://images.unsplash.com',
-  pathURI: '/CmsPages',
-  //  baseURL: 'https://images.unsplash.com',
-  //  pathURI: '/photo',
+  baseURL: 'https://images.unsplash.com',
+  pathURI: '/photo',
   width: null,
   height: null,
   quality: 80,
