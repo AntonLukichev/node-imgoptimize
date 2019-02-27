@@ -46,8 +46,8 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.q
   delete data.query.fm
   data.uri = url.path + '?' + qs.stringify(data.query)
-  // data.filename = url.path
   data.sourceFilename = hash.update(data.uri).digest('hex')
+  // data.folder = data.sourceFilename.substring(0, 3)
   return data
 }
 
