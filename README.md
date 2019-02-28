@@ -50,10 +50,10 @@ v0.2.0:
 - [x] generate source url with original request parameters
 - [x] caching original file
 - [x] support a large number of files
-- [ ] custom log level
 
 v0.3.0:
 - [ ] expand API
+- [ ] custom log level
 
 I plan to implement in the future:
 * add multiple pathURI
