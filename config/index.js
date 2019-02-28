@@ -11,7 +11,7 @@ module.exports = {
   defaultQuality: config.quality,
   defaultFormat: config.format,
   defaultFit: config.fit,
-  originalFolder: config.originalFolder,
+  sourceFolder: config.sourceFolder,
   destinationFolder: config.destinationFolder,
   allowFormat: config.allowFormat,
   jpegOptions: config.jpegOptions,

@@ -1,8 +1,12 @@
+# Imgresizer
+small_img
+src_img
+config/config.js
+config/server.js
+
 # WebStrom
 .idea/
 package-lock.json
-small_img
-src_img
 
 # Logs
 logs

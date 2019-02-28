@@ -3,6 +3,6 @@ exports.axiosConfig = {
   method: 'get',
   responseType: 'stream',
   withCredentials: false,
-  maxContentLength: 1024 * 1024 * 10, // 10 Mb
-  maxRedirects: 2
+  maxContentLength: 1024 * 1024 * 20, // 20 Mb
+  maxRedirects: 5
 }

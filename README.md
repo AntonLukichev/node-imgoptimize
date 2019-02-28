@@ -16,8 +16,9 @@ Automatic recognition of browser support formats WebP
 ## Install
 ```bash
 npm install
-mkdir src_img
-mkdir small_img
+cd ./config/
+cp ./config.example.js ./config.js
+cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 
@@ -48,10 +49,11 @@ v0.2.0:
 
 - [x] generate source url with original request parameters
 - [x] caching original file
-- [ ] custom log level
+- [x] support a large number of files
 
 v0.3.0:
 - [ ] expand API
+- [ ] custom log level
 
 I plan to implement in the future:
 * add multiple pathURI
