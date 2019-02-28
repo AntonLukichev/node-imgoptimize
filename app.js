@@ -46,21 +46,20 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.q
   delete data.query.fm
   data.uri = url.path + '?' + qs.stringify(data.query)
-  data.sourceFilename = hash.update(data.uri).digest('hex')
-  // data.folder = data.sourceFilename.substring(0, 3)
+  data.md5 = hash.update(data.uri).digest('hex')
+  data.folder = data.md5.substring(0, 3)
+  data.sourceFilename = data.md5.substring(3)
+  createFolder(path.join(CONFIG.sourceFolder, data.folder))
+  createFolder(path.join(CONFIG.destinationFolder, data.folder))
   return data
 }
 
-const isFileExists = (filename) => {
-  return fs.existsSync(filename)
-}
-
-const getFileSize = (filePath) => {
+/* const getFileSize = (filePath) => {
   const stat = fs.statSync(filePath)
   const size = stat.size
   let i = Math.floor(Math.log(size) / Math.log(1024))
   return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i]
-}
+} */
 
 const isAcceptWebp = (accept) => {
   const patternWebp = /image\/webp/
@@ -69,7 +68,8 @@ const isAcceptWebp = (accept) => {
 
 const getSourceFilename = (reqImg) => {
   return path.join(
-    CONFIG.originalFolder,
+    CONFIG.sourceFolder,
+    reqImg.folder,
     reqImg.sourceFilename
   )
 }
@@ -84,6 +84,7 @@ const getDestFileName = (reqImg) => {
   // ToDo add another formats
   return path.join(
     CONFIG.destinationFolder,
+    reqImg.folder,
     filename + imgW + imgH + imgQ + ext)
 }
 
@@ -138,7 +139,7 @@ const processingImg = async (settings, rep) => {
 }
 
 const getDownloadFile = async (settings, rep) => {
-  if (isFileExists(settings.source)) {
+  if (isPathExists(settings.source)) {
     console.log('source img exists')
     return processingImg(settings, rep)
   } else {
@@ -188,13 +189,21 @@ fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
   const settings = getSettings(req)
   fastify.log.info('settings request:', settings)
 
-  if (isFileExists(settings.destination)) {
+  if (isPathExists(settings.destination)) {
     console.log('img exists')
     rep.sendFile(settings.destination)
   } else {
     await getDownloadFile(settings, rep)
   }
 })
+
+const isPathExists = (filepath) => {
+  return fs.existsSync(filepath)
+}
+
+const createFolder = (folder) => {
+  return isPathExists(folder) ? true : fs.mkdirSync(folder)
+}
 
 const start = async () => {
   try {
@@ -205,7 +214,12 @@ const start = async () => {
       }
     })
     fastify.swagger()
-    // add create folder: originalFolder destinationFolder
+    try {
+      createFolder(CONFIG.sourceFolder)
+      createFolder(CONFIG.destinationFolder)
+    } catch (e) {
+      console.error('can\'t create folder from config')
+    }
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)

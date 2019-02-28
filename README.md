@@ -16,8 +16,6 @@ Automatic recognition of browser support formats WebP
 ## Install
 ```bash
 npm install
-mkdir src_img
-mkdir small_img
 cd ./config/
 cp ./config.example.js ./config.js
 cp ./server.example.js ./server.js
@@ -51,6 +49,7 @@ v0.2.0:
 
 - [x] generate source url with original request parameters
 - [x] caching original file
+- [x] support a large number of files
 - [ ] custom log level
 
 v0.3.0:
