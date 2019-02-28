@@ -6,7 +6,7 @@ module.exports = {
   quality: 80,
   format: 'jpeg',
   fit: 'cover',
-  originalFolder: 'src_img',
+  sourceFolder: 'source_img',
   destinationFolder: 'small_img',
   allowFormat: [
     'jpeg',
