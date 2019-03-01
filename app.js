@@ -14,7 +14,7 @@ const CONFIG = require('./config')
 const swagger = require('./config/swagger')
 
 fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
-// fastify.register(require('fastify-response-time'))
+// fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
 fastify.register(require('fastify-static'), { root: __dirname })
 fastify.register(require('fastify-swagger'), swagger.options)
 
@@ -30,7 +30,7 @@ const parseReq = (url, acceptWebp) => {
   const hash = crypto.createHash('md5')
   let data = {}
   data.query = qs.parse(url.query)
-  //  parsing parameters in equest
+  //  parsing parameters from request
   data.img = {}
   data.img.w = parseInt(data.query.w) || CONFIG.defaultWidth
   data.img.h = parseInt(data.query.h) || CONFIG.defaultHeight
@@ -89,7 +89,6 @@ const getDestFileName = (reqImg) => {
 }
 
 const isAllowFileType = (contentType) => {
-  // contentType.startsWith('image/')
   const type = contentType.split('/')
   let allowType = false
   if (type[0] === 'image' && CONFIG.allowFormat.includes(type[1])) {
@@ -218,7 +217,8 @@ const start = async () => {
       createFolder(CONFIG.sourceFolder)
       createFolder(CONFIG.destinationFolder)
     } catch (e) {
-      console.error('can\'t create folder from config')
+      console.error('can\'t create folder from config', e)
+      process.exit(1)
     }
   } catch (err) {
     fastify.log.error(err)

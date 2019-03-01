@@ -5,8 +5,20 @@ exports.getFile = async (req, reply) => {
     const id = req.params.id
     const file = {
       id: id
-    } // await (req) => {}
+    }
+    // await (req) => {}
     return file
+  } catch (err) {
+    throw boom.boomify(err)
+  }
+}
+
+exports.sharpImage = async (req, reply) => {
+  try {
+    const fileId = req.params.id
+    const options = req.body
+    // await (req) => {}
+    return options
   } catch (err) {
     throw boom.boomify(err)
   }
