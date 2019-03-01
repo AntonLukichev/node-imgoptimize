@@ -3,8 +3,10 @@ const boom = require('boom')
 exports.getFile = async (req, reply) => {
   try {
     const id = req.params.id
+    const body = req.body
     const file = {
-      id: id
+      id: id,
+      body: body
     }
     // await (req) => {}
     return file
