@@ -16,6 +16,7 @@ Automatic recognition of browser support formats WebP
 ## Install
 ```bash
 npm install
+
 cd ./config/
 cp ./config.example.js ./config.js
 cp ./server.example.js ./server.js
