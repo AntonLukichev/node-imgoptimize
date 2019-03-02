@@ -11,13 +11,8 @@ exports.getFile = {
   body: {
     type: 'object',
     properties: {
-      hello: { type: 'string' },
-      obj: {
-        type: 'object',
-        properties: {
-          some: { type: 'string' }
-        }
-      }
+      url: { type: 'string' },
+      filename: { type: 'string' }
     }
   }
 }

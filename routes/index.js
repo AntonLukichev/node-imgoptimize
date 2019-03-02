@@ -14,8 +14,12 @@ const routes = [
     method: 'POST',
     url: '/api/image/:id',
     handler: apiController.sharpImage
-  }/* ,
-   */
+  },
+  {
+    method: 'GET',
+    url: '/api/test/*',
+    handler: mainController.getImageV3
+  }
 ]
 
 CONFIG.pathURI.forEach((pathURI, index) => {

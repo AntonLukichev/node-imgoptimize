@@ -4,6 +4,7 @@ exports.getFile = async (req, reply) => {
   try {
     const id = req.params.id
     const body = req.body
+    console.log(body)
     const file = {
       id: id,
       body: body

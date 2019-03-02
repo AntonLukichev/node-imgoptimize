@@ -36,9 +36,9 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.q
   delete data.query.fm
   data.uri = url.path + '?' + qs.stringify(data.query)
-  data.md5 = hash.update(data.uri).digest('hex')
-  data.folder = data.md5.substring(0, 3)
-  data.sourceFilename = data.md5.substring(3)
+  data.hash = hash.update(data.uri).digest('hex')
+  data.folder = data.hash.substring(0, 3)
+  data.sourceFilename = data.hash.substring(3)
   createFolder(path.join(CONFIG.sourceFolder, data.folder))
   createFolder(path.join(CONFIG.destinationFolder, data.folder))
   return data
@@ -170,7 +170,8 @@ const getSettings = (req) => {
     img: reqImg.img,
     source: sourceFilename,
     destination: destFilename,
-    webp: acceptWebp
+    webp: acceptWebp,
+    hash: reqImg.hash
   }
 }
 
@@ -194,7 +195,36 @@ const getImage = async (req, rep) => {
   }
 }
 
+const getData = async (settings) => {
+  try {
+    // const t = await axios.get('/api/file/' + settings.hash)
+    const t = await axios.post({
+      url: 'http://localhost:3000/api/file/' + settings.hash,
+      data: { tt: 123 }
+    })
+      .catch((e) => {
+        console.log(e)
+      })
+    /* {
+      url: settings.url,
+      filename: settings.destination
+    } */
+    return t
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const getImageV3 = async (req, rep) => {
+  const settings = getSettings(req)
+  fastify.log.info('settings request:', settings)
+  const test = await getData(settings)
+
+  return test
+}
+
 module.exports = {
   createFolder,
-  getImage
+  getImage,
+  getImageV3
 }
