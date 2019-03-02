@@ -14,12 +14,16 @@ const routes = [
     method: 'POST',
     url: '/api/image/:id',
     handler: apiController.sharpImage
-  },
-  {
-    method: 'GET',
-    url: CONFIG.pathURI,
-    handler: mainController.getImage
-  }
+  }/* ,
+   */
 ]
+
+CONFIG.pathURI.forEach((pathURI, index) => {
+  routes.push({
+    method: 'GET',
+    url: pathURI + '*',
+    handler: mainController.getImage
+  })
+})
 
 module.exports = routes

@@ -35,18 +35,6 @@ routes.forEach((route, index) => {
   fastify.route(route)
 })
 
-/* fastify.get(`${CONFIG.pathURI}*`, async (req, rep) => {
-  const settings = getSettings(req)
-  fastify.log.info('settings request:', settings)
-
-  if (isPathExists(settings.destination)) {
-    console.log('img exists')
-    rep.sendFile(settings.destination)
-  } else {
-    await getDownloadFile(settings, rep)
-  }
-}) */
-
 const start = async () => {
   try {
     await fastify.listen(CONFIG.httpPort, CONFIG.httpHost, (err, address) => {

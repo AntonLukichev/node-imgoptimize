@@ -53,14 +53,14 @@ v0.2.0:
 - [x] support a large number of files
 
 v0.3.0:
+- [x] add multiple path URI
 - [ ] expand API
+- [ ] documentation API in Swagger
 - [ ] custom log level
 
 I plan to implement in the future:
-* add multiple pathURI
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
-* documentation API in Swagger
 * add test (Jest, Mocha)
 * add docker
 * add support HTTP2
