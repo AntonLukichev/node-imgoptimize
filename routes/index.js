@@ -1,5 +1,7 @@
 const apiController = require('../controllers/apiController')
+const mainController = require('../controllers/mainController')
 const schema = require('../schemas')
+const CONFIG = require('../config')
 
 const routes = [
   {
@@ -12,6 +14,11 @@ const routes = [
     method: 'POST',
     url: '/api/image/:id',
     handler: apiController.sharpImage
+  },
+  {
+    method: 'GET',
+    url: CONFIG.pathURI,
+    handler: mainController.getImage
   }
 ]
 
