@@ -1,5 +1,5 @@
 {
-  "name": "img-resizer",
+  "name": "node-imgoptimize",
   "version": "0.3.0",
   "description": "Proxy server for image resizing on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AntonLukichev/img-resizer.git"
+    "url": "git+https://github.com/AntonLukichev/node-imgoptimize.git"
   },
   "keywords": [
     "node-js",
@@ -22,9 +22,9 @@
   "author": "Anton Lukichev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AntonLukichev/img-resizer/issues"
+    "url": "https://github.com/AntonLukichev/node-imgoptimize/issues"
   },
-  "homepage": "https://github.com/AntonLukichev/img-resizer#readme",
+  "homepage": "https://github.com/AntonLukichev/node-imgoptimize#readme",
   "engines": {
     "node": ">=6.0.0"
   },
