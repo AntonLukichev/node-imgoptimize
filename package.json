@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AntonLukichev/imgresizer.git"
+    "url": "git+https://github.com/AntonLukichev/img-resizer.git"
   },
   "keywords": [
     "node-js",
@@ -22,9 +22,9 @@
   "author": "Anton Lukichev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AntonLukichev/imgresizer/issues"
+    "url": "https://github.com/AntonLukichev/img-resizer/issues"
   },
-  "homepage": "https://github.com/AntonLukichev/imgresizer#readme",
+  "homepage": "https://github.com/AntonLukichev/img-resizer#readme",
   "engines": {
     "node": ">=6.0.0"
   },
