@@ -1,21 +1,21 @@
-# imgresizer
-[![Build Status](https://img.shields.io/travis/AntonLukichev/imgresizer/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/imgresizer)
+# img-resizer
+[![Build Status](https://img.shields.io/travis/AntonLukichev/img-resizer/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/img-resizer)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 ![](https://img.shields.io/node/v/fastify/latest.svg?style=flat-square)
 [![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)](LICENSE)
 
-[![codecov](https://codecov.io/gh/AntonLukichev/imgresizer/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/AntonLukichev/imgresizer)
-[![release](https://img.shields.io/github/release/AntonLukichev/imgresizer.svg?style=flat-square)](https://github.com/AntonLukichev/imgresizer/releases)
-![](https://img.shields.io/github/downloads/AntonLukichev/imgresizer/total.svg?style=flat-square)
-[![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/imgresizer/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/imgresizer?targetFile=package.json)
-[![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/imgresizer.svg?style=flat-square)](https://greenkeeper.io/)
+[![codecov](https://codecov.io/gh/AntonLukichev/img-resizer/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/AntonLukichev/img-resizer)
+[![release](https://img.shields.io/github/release/AntonLukichev/img-resizer.svg?style=flat-square)](https://github.com/AntonLukichev/img-resizer/releases)
+![downloads](https://img.shields.io/github/downloads/AntonLukichev/img-resizer/total.svg?style=flat-square)
+[![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/img-resizer/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/img-resizer?targetFile=package.json)
+[![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/img-resizer.svg?style=flat-square)](https://greenkeeper.io/)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
 
 ## Install
 ```bash
-npm install
+npm install img-resize --save
 
 cd ./config/
 cp ./config.example.js ./config.js
@@ -64,7 +64,7 @@ I plan to implement in the future:
 * add test (Jest, Mocha)
 * add docker
 * add support HTTP2
-* add DDoS protection
+* add security protection
 * add support redis/mongo for cache info
 * add image operations (rotate, blur, normalise...)
 
@@ -72,6 +72,11 @@ I plan to implement in the future:
 If you'd like to lazy load images, I recommend using [lazysizes](https://github.com/aFarkas/lazysizes).
 
 ## FAQ
+
+## Security
+[Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/)
+
+[Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html)
 
 ## Contributing
 [See the CONTRIBUTING file here](CONTRIBUTING.md)

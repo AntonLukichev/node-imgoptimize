@@ -1,5 +1,5 @@
 {
-  "name": "imgresizer",
+  "name": "img-resizer",
   "version": "0.3.0",
   "description": "Proxy server for image resizing on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
