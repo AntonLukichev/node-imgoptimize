@@ -1,6 +1,8 @@
 module.exports = {
   baseURL: 'https://images.unsplash.com',
-  pathURI: '/photo',
+  pathURI: [
+    '/photo'
+  ],
   width: null,
   height: null,
   quality: 80,
