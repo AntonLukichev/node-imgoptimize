@@ -1,7 +1,7 @@
 {
   "name": "node-imgoptimize",
   "version": "0.3.0",
-  "description": "Proxy server for image resizing on Node.JS use (fastify, axios, sharp)",
+  "description": "Proxy server for image optimization on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
