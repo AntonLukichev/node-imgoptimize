@@ -1,5 +1,5 @@
 # img-resizer
-[![Build Status](https://img.shields.io/travis/AntonLukichev/img-resizer/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/img-resizer)
+[![Build Status](https://img.shields.io/travis/AntonLukichev/imgresizer/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/img-resizer)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 ![](https://img.shields.io/node/v/fastify/latest.svg?style=flat-square)
 [![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)](LICENSE)
@@ -8,7 +8,7 @@
 [![release](https://img.shields.io/github/release/AntonLukichev/img-resizer.svg?style=flat-square)](https://github.com/AntonLukichev/img-resizer/releases)
 ![downloads](https://img.shields.io/github/downloads/AntonLukichev/img-resizer/total.svg?style=flat-square)
 [![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/img-resizer/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/img-resizer?targetFile=package.json)
-[![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/img-resizer.svg?style=flat-square)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/AntonLukichev/imgresizer.svg?style=flat-square)](https://greenkeeper.io/)
 
 Proxy server for image resizing on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
