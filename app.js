@@ -2,7 +2,7 @@ const fs = require('fs')
 const routes = require('./routes')
 const CONFIG = require('./config')
 const swagger = require('./config/swagger')
-
+const mainController = require('./controllers/mainController')
 const fastify = require('fastify')({
   logger: true
 })
@@ -12,6 +12,13 @@ fastify.register(require('fastify-swagger'), swagger.options)
 
 const startCheck = () => {
   try {
+    mainController.createFolder(CONFIG.sourceFolder)
+    mainController.createFolder(CONFIG.destinationFolder)
+  } catch (e) {
+    console.error('can\'t create folder from config', e)
+    process.exit(1)
+  }
+  try {
     fs.accessSync('./config/config.js', fs.constants.R_OK)
     fs.accessSync('./config/server.js', fs.constants.R_OK)
   } catch (e) {
@@ -20,8 +27,6 @@ const startCheck = () => {
   }
 }
 startCheck()
-
-const mainController = require('./controllers/mainController')
 
 routes.forEach((route, index) => {
   fastify.route(route)
@@ -36,13 +41,6 @@ const start = async () => {
       }
     })
     fastify.swagger()
-    try {
-      mainController.createFolder(CONFIG.sourceFolder)
-      mainController.createFolder(CONFIG.destinationFolder)
-    } catch (e) {
-      console.error('can\'t create folder from config', e)
-      process.exit(1)
-    }
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
