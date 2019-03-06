@@ -16,10 +16,20 @@ const getFormat = (format) => {
   return CONFIG.allowFormat.includes(format) ? format : CONFIG.defaultFormat
 }
 
-const parseReq = (url, acceptWebp) => {
+const getUrlPath = (url) => {
+  const hashStart = url.indexOf('#')
+  if (hashStart !== -1) {
+    url = url.slice(0, hashStart)
+  }
+
+  return url.split('?')[0] || url
+}
+
+const parseReq = (req, acceptWebp) => {
   const hash = crypto.createHash('md5')
+  const uriPath = getUrlPath(req.raw.url)
   let data = {}
-  data.query = qs.parse(url.query)
+  data.query = req.query
   //  parsing parameters from request
   data.img = {}
   data.img.w = parseInt(data.query.w) || CONFIG.defaultWidth
@@ -35,7 +45,7 @@ const parseReq = (url, acceptWebp) => {
   delete data.query.h
   delete data.query.q
   delete data.query.fm
-  data.uri = url.path + '?' + qs.stringify(data.query)
+  data.uri = uriPath + '?' + qs.stringify(data.query)
   data.hash = hash.update(data.uri).digest('hex')
   data.folder = data.hash.substring(0, 3)
   data.sourceFilename = data.hash.substring(3)
@@ -157,9 +167,8 @@ const getDownloadFile = async (settings, rep) => {
 }
 
 const getSettings = (req) => {
-  const urlData = req.urlData()
   const acceptWebp = isAcceptWebp(req.headers.accept)
-  const reqImg = parseReq(urlData, acceptWebp)
+  const reqImg = parseReq(req, acceptWebp)
   const url = CONFIG.baseURL + reqImg.uri
 
   const sourceFilename = getSourceFilename(reqImg)

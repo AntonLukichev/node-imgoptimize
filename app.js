@@ -1,15 +1,14 @@
-const axios = require('axios')
-const sharp = require('sharp')
-const qs = require('querystring')
 const fs = require('fs')
-const path = require('path')
-const crypto = require('crypto')
-const boom = require('boom')
-const mainController = require('./controllers/mainController')
+const routes = require('./routes')
+const CONFIG = require('./config')
+const swagger = require('./config/swagger')
 
 const fastify = require('fastify')({
   logger: true
 })
+// fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
+fastify.register(require('fastify-static'), { root: __dirname })
+fastify.register(require('fastify-swagger'), swagger.options)
 
 const startCheck = () => {
   try {
@@ -22,14 +21,7 @@ const startCheck = () => {
 }
 startCheck()
 
-const routes = require('./routes')
-const CONFIG = require('./config')
-const swagger = require('./config/swagger')
-
-fastify.register(require('fastify-url-data'), (err) => { if (err) throw err })
-// fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
-fastify.register(require('fastify-static'), { root: __dirname })
-fastify.register(require('fastify-swagger'), swagger.options)
+const mainController = require('./controllers/mainController')
 
 routes.forEach((route, index) => {
   fastify.route(route)
