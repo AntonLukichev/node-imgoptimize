@@ -45,7 +45,7 @@ const parseReq = (req, acceptWebp) => {
   delete data.query.h
   delete data.query.q
   delete data.query.fm
-  data.uri = uriPath + '?' + qs.stringify(data.query)
+  data.uri = Object.keys(data.query).length ? `${uriPath}?${qs.stringify(data.query)}` : uriPath
   data.hash = hash.update(data.uri).digest('hex')
   data.folder = data.hash.substring(0, 3)
   data.sourceFilename = data.hash.substring(3)
@@ -206,27 +206,28 @@ const getImage = async (req, rep) => {
 
 const getData = async (settings) => {
   try {
-    // const t = await axios.get('/api/file/' + settings.hash)
-    const t = await axios.post({
-      url: 'http://localhost:3000/api/file/' + settings.hash,
-      data: { tt: 123 }
+    const t = await axios({
+      method: 'POST',
+      url: `http://${CONFIG.httpHost}:${CONFIG.httpPort}/api/file/${settings.hash}`,
+      data: { settings },
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8'
+      }
     })
       .catch((e) => {
-        console.log(e)
+        console.log('post ', e)
+        boom.boomify(e)
       })
-    /* {
-      url: settings.url,
-      filename: settings.destination
-    } */
-    return t
+    return t.data
   } catch (e) {
-    console.log(e)
+    console.log('getData', e)
   }
 }
 
 const getImageV3 = async (req, rep) => {
   const settings = getSettings(req)
-  fastify.log.info('settings request:', settings)
+  // fastify.log.info('settings request:', settings)
   const test = await getData(settings)
 
   return test
