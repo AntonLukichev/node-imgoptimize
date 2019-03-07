@@ -166,6 +166,10 @@ const getDownloadFile = async (settings, rep) => {
   }
 }
 
+const getDownloadFileV3 = async (id, url, filename) => {
+  return { test: true }
+}
+
 const getSettings = (req) => {
   const acceptWebp = isAcceptWebp(req.headers.accept)
   const reqImg = parseReq(req, acceptWebp)
@@ -197,7 +201,7 @@ const getImage = async (req, rep) => {
   fastify.log.info('settings request:', settings)
 
   if (isPathExists(settings.destination)) {
-    console.log('img exists')
+    fastify.log.info('img exists', settings.destination)
     rep.sendFile(settings.destination)
   } else {
     await getDownloadFile(settings, rep)
@@ -209,7 +213,10 @@ const getData = async (settings) => {
     const t = await axios({
       method: 'POST',
       url: `http://${CONFIG.httpHost}:${CONFIG.httpPort}/api/file/${settings.hash}`,
-      data: { settings },
+      data: {
+        url: settings.url,
+        filename: settings.source
+      },
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=utf-8'
@@ -222,6 +229,7 @@ const getData = async (settings) => {
     return t.data
   } catch (e) {
     console.log('getData', e)
+    boom.boomify(e)
   }
 }
 
@@ -236,5 +244,6 @@ const getImageV3 = async (req, rep) => {
 module.exports = {
   createFolder,
   getImage,
-  getImageV3
+  getImageV3,
+  getDownloadFileV3
 }

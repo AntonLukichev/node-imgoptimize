@@ -3,9 +3,7 @@ const routes = require('./routes')
 const CONFIG = require('./config')
 const swagger = require('./config/swagger')
 const mainController = require('./controllers/mainController')
-const fastify = require('fastify')({
-  logger: true
-})
+const fastify = require('fastify')({ logger: true })
 // fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
 fastify.register(require('fastify-static'), { root: __dirname })
 fastify.register(require('fastify-swagger'), swagger.options)
