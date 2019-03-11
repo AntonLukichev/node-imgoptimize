@@ -19,7 +19,10 @@
     "sharp",
     "libvips"
   ],
-  "author": "Anton Lukichev",
+  "author": {
+    "name": "Anton Lukichev",
+    "email": "anton@lukichev.pro"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AntonLukichev/node-imgoptimize/issues"
