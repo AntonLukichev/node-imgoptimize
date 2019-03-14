@@ -55,7 +55,7 @@ v0.2.0:
 v0.3.0:
 - [x] add multiple path URI
 - [ ] expand API
-- [ ] documentation API in Swagger
+- [x] documentation API in Swagger
 - [ ] custom log level
 
 I plan to implement in the future:
