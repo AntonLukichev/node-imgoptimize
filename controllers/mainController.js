@@ -47,8 +47,8 @@ const parseReq = (req, acceptWebp) => {
   delete data.query.fm
   data.uri = Object.keys(data.query).length ? `${uriPath}?${qs.stringify(data.query)}` : uriPath
   data.hash = hash.update(data.uri).digest('hex')
-  data.folder = data.hash.substring(0, 3)
-  data.sourceFilename = data.hash.substring(3)
+  data.folder = data.hash.substring(0, 2)
+  data.sourceFilename = data.hash.substring(2)
   createFolder(path.join(CONFIG.sourceFolder, data.folder))
   createFolder(path.join(CONFIG.destinationFolder, data.folder))
   return data
