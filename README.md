@@ -62,8 +62,10 @@ v0.2.0:
 v0.3.0:
 - [x] add multiple path URI
 - [x] add JPEG and WebP options
-- [ ] expand API
+
+v0.4.0:
 - [x] documentation API in Swagger
+- [ ] expand API
 - [ ] custom log level
 
 I plan to implement in the future:
