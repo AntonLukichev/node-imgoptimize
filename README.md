@@ -30,6 +30,8 @@ $ cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 
+[Install as service on Ubuntu](install_ubuntu.md)
+
 ## Example Usage
 
 ```
