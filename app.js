@@ -1,3 +1,4 @@
+#!/usr/bin/env nodejs
 const fs = require('fs')
 const routes = require('./routes')
 const CONFIG = require('./config')
