@@ -15,11 +15,18 @@ Automatic recognition of browser support formats WebP
 
 ## Install
 ```bash
-npm install node-imgoptimize --save
+$ npm install node-imgoptimize --save
 
-cd ./config/
-cp ./config.example.js ./config.js
-cp ./server.example.js ./server.js
+$ cd ./config/
+$ cp ./config.example.js ./config.js
+$ cp ./server.example.js ./server.js
+```
+```bash
+$ git clone https://github.com/AntonLukichev/node-imgoptimize.git
+$ npm install
+$ cd ./node-imgoptimize/config/
+$ cp ./config.example.js ./config.js
+$ cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 
@@ -55,11 +62,14 @@ v0.2.0:
 v0.3.0:
 - [x] add multiple path URI
 - [x] add JPEG and WebP options
-- [ ] expand API
+
+v0.4.0:
 - [x] documentation API in Swagger
+- [ ] expand API
 - [ ] custom log level
 
 I plan to implement in the future:
+* add options Low Quality Image Placeholders (LQIP)
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
 * add test (Jest, Mocha)

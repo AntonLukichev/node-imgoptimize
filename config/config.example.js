@@ -27,4 +27,5 @@ module.exports = {
     alphaQuality: 100, // quality of alpha layer, integer 0-100
     lossless: false, // use lossless compression mode
     nearLossless: false //  use near_lossless compression mode
+  }
 }
