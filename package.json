@@ -1,6 +1,6 @@
 {
   "name": "node-imgoptimize",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Proxy server for image optimization on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
