@@ -39,7 +39,7 @@
     "fastify-static": "^2.3.4",
     "fastify-swagger": "^2.3.1",
     "fastify-url-data": "^2.2.2",
-    "sharp": "^0.21.3"
+    "sharp": "^0.22.0"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
