@@ -1,5 +1,6 @@
+const CONFIG = require('../config')
 const boom = require('boom')
-const fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({ logger: { level: CONFIG.logLevel } })
 const mainController = require('./mainController')
 
 exports.getFile = async (req, reply) => {

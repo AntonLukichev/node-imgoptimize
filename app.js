@@ -4,7 +4,7 @@ const routes = require('./routes')
 const CONFIG = require('./config')
 const swagger = require('./config/swagger')
 const mainController = require('./controllers/mainController')
-const fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({ logger: { level: CONFIG.logLevel } })
 // fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
 fastify.register(require('fastify-static'), { root: __dirname })
 fastify.register(require('fastify-swagger'), swagger.options)
@@ -14,14 +14,14 @@ const startCheck = () => {
     mainController.createFolder(CONFIG.sourceFolder)
     mainController.createFolder(CONFIG.destinationFolder)
   } catch (e) {
-    console.error('can\'t create folder from config', e)
+    fastify.log.error('can\'t create folder from config', e)
     process.exit(1)
   }
   try {
     fs.accessSync('./config/config.js', fs.constants.R_OK)
     fs.accessSync('./config/server.js', fs.constants.R_OK)
   } catch (e) {
-    console.error('can\'t read config files', e)
+    fastify.log.error('can\'t read config files', e)
     process.exit(1)
   }
 }

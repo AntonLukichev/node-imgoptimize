@@ -5,12 +5,9 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 const boom = require('boom')
-
-const fastify = require('fastify')({
-  logger: true
-})
-
 const CONFIG = require('../config')
+
+const fastify = require('fastify')({ logger: { level: CONFIG.logLevel } })
 
 const getFormat = (format) => {
   return CONFIG.allowFormat.includes(format) ? format : CONFIG.defaultFormat
@@ -139,20 +136,20 @@ const processingImg = async (settings, rep) => {
 
 const getDownloadFile = async (settings, rep) => {
   if (isPathExists(settings.source)) {
-    console.log('source img exists')
+    fastify.log.info('source img exists')
     return processingImg(settings, rep)
   } else {
     const axiosGetFile = axios.create(CONFIG.axiosConfig)
     const writeStream = fs.createWriteStream(settings.source)
     writeStream.on('finish', () => {
-      console.log('save file finish')
+      fastify.log.info('save file finish')
       return processingImg(settings, rep)
     })
-    console.log(`start download file -> ${settings.url}`)
+    fastify.log.info(`start download file -> ${settings.url}`)
     const respData = await axiosGetFile(settings.url)
       .then((response) => {
         if (isAllowFileType(response.headers['content-type']) && response.status === 200) {
-          console.log(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
+          fastify.log.info(`download complete ${settings.url} -> ${response.status} ${response.headers['content-length']} ${response.headers['content-type']}`)
           response.data.pipe(writeStream)
           return response.data
         } else {
@@ -223,12 +220,12 @@ const getData = async (settings) => {
       }
     })
       .catch((e) => {
-        console.log('post ', e)
+        fastify.log.error('post ', e)
         boom.boomify(e)
       })
     return t.data
   } catch (e) {
-    console.log('getData', e)
+    fastify.log.error('getData', e)
     boom.boomify(e)
   }
 }

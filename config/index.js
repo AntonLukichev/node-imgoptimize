@@ -4,6 +4,7 @@ const axios = require('./axios')
 module.exports = {
   httpHost: server.httpHost,
   httpPort: server.httpPort,
+  logLevel: server.logLevel,
   baseURL: config.baseURL,
   pathURI: config.pathURI,
   defaultWidth: config.width,

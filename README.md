@@ -66,9 +66,9 @@ v0.3.0:
 - [x] add JPEG and WebP options
 
 v0.4.0:
+- [x] custom log level
 - [x] documentation API in Swagger
 - [ ] expand API
-- [ ] custom log level
 
 I plan to implement in the future:
 * add options Low Quality Image Placeholders (LQIP)
