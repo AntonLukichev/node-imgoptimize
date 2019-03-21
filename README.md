@@ -30,7 +30,7 @@ $ cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 
-[Install as service on Ubuntu](install_ubuntu.md)
+[Install as service on Ubuntu](docs/install_ubuntu.md)
 
 ## Example Usage
 
@@ -71,6 +71,7 @@ v0.4.0:
 - [ ] expand API
 
 I plan to implement in the future:
+* add log rotation
 * add options Low Quality Image Placeholders (LQIP)
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
