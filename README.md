@@ -73,6 +73,7 @@ v0.4.0:
 I plan to implement in the future:
 * add log rotation
 * add options Low Quality Image Placeholders (LQIP)
+* add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
 * add test (Jest, Mocha)

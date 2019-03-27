@@ -238,9 +238,14 @@ const getImageV3 = async (req, rep) => {
   return test
 }
 
+const getHeaders = async (req, rep) => {
+  return req.headers
+}
+
 module.exports = {
   createFolder,
   getImage,
   getImageV3,
-  getDownloadFileV3
+  getDownloadFileV3,
+  getHeaders
 }

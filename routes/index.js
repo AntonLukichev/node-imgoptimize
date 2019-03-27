@@ -19,6 +19,11 @@ const routes = [
     method: 'GET',
     url: '/api/test/*',
     handler: mainController.getImageV3
+  },
+  {
+    method: 'GET',
+    url: '/api/test2/*',
+    handler: mainController.getHeaders
   }
 ]
 

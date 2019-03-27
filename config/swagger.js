@@ -1,3 +1,5 @@
+const server = require('./server')
+
 exports.options = {
   routePrefix: '/swagger',
   exposeRoute: true,
@@ -11,7 +13,7 @@ exports.options = {
       url: 'https://swagger.io',
       description: 'Find more info'
     },
-    host: 'localhost:3000',
+    host: `localhost:${server.httpPort}`,
     schemes: ['http'],
     consumes: ['application/json'],
     produces: ['application/json']
