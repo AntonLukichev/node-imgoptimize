@@ -1,5 +1,7 @@
 # Install on Ubuntu 16.04
 
+## Install
+
 ### Install Node.js v10.x
 [Installing Node.js](https://github.com/nodesource/distributions/blob/master/README.md)
 ```text
@@ -25,3 +27,7 @@ $ npm i -g pm2
 $ pm2 start app.js
 $ pm2 startup
 ```
+
+## Log rotation
+
+[Log rotation setup](log_rotation.md)

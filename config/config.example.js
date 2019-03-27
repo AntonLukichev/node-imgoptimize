@@ -1,4 +1,6 @@
 module.exports = {
+  sourceFolder: 'source_img',
+  destinationFolder: 'small_img',
   baseURL: 'https://images.unsplash.com',
   pathURI: [
     '/photo'
@@ -8,8 +10,6 @@ module.exports = {
   quality: 80,
   format: 'jpeg',
   fit: 'cover',
-  sourceFolder: 'source_img',
-  destinationFolder: 'small_img',
   allowFormat: [
     'jpeg',
     'webp'
