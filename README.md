@@ -78,6 +78,7 @@ I plan to implement in the future:
 * divide the functionality into modules up to version 1.0.0
 * add test (Jest, Mocha)
 * add docker
+* support PAAS (Herocu, Zeit, Nanobox...)
 * add support HTTP2
 * add security protection
 * add support redis/mongo for cache info
