@@ -31,6 +31,7 @@ $ cp ./server.example.js ./server.js
 Requires node >= 6.0, but I recommended use 10.x LTS
 
 [Install as service on Ubuntu](docs/install_ubuntu.md)
+[Install on Heroku](docs/install_heroku.md)
 
 ## Example Usage
 
