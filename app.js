@@ -1,6 +1,4 @@
 #!/usr/bin/env nodejs
-const fs = require('fs')
-const { COPYFILE_EXCL } = fs.constants
 const routes = require('./routes')
 const CONFIG = require('./config')
 const swagger = require('./config/swagger')
@@ -27,7 +25,7 @@ routes.forEach((route, index) => {
 
 const start = async () => {
   try {
-    await fastify.listen(CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
+    await fastify.listen(process.env.PORT || CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
       if (err) {
         fastify.log.error(err)
         process.exit(1)
