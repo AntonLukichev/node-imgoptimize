@@ -1,0 +1,7 @@
+{
+  "name": "node-imgoptimize",
+  "description": "Proxy server for image optimization on Node.JS",
+  "repository": "https://github.com/AntonLukichev/node-imgoptimize",
+  "logo": "https://rawgit.com/heroku/node-js-sample/master/public/node.svg",
+  "keywords": ["node", "node-js", "image-processing", "fastify", "axios", "sharp", "libvips"]
+}

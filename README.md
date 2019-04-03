@@ -30,8 +30,9 @@ $ cp ./server.example.js ./server.js
 ```
 Requires node >= 6.0, but I recommended use 10.x LTS
 
-[Install as service on Ubuntu](docs/install_ubuntu.md)
-[Install on Heroku](docs/install_heroku.md)
+[Install as service on Ubuntu](docs/install_ubuntu.md)<br>
+[Install on Heroku](docs/install_heroku.md)<br>
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AntonLukichev/node-imgoptimize)
 
 ## Example Usage
 
