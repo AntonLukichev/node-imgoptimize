@@ -1,5 +1,6 @@
 #!/usr/bin/env nodejs
 const fs = require('fs')
+const { COPYFILE_EXCL } = fs.constants
 const routes = require('./routes')
 const CONFIG = require('./config')
 const swagger = require('./config/swagger')
@@ -15,13 +16,6 @@ const startCheck = () => {
     mainController.createFolder(CONFIG.destinationFolder)
   } catch (e) {
     fastify.log.error('can\'t create folder from config', e)
-    process.exit(1)
-  }
-  try {
-    fs.accessSync('./config/config.js', fs.constants.R_OK)
-    fs.accessSync('./config/server.js', fs.constants.R_OK)
-  } catch (e) {
-    fastify.log.error('can\'t read config files', e)
     process.exit(1)
   }
 }

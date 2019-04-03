@@ -20,7 +20,7 @@ $ heroku login
 
 ## Deploying to Heroku
 
-```
+```text
 $ heroku create node-imgoptimize
 $ git push heroku master
 $ heroku open

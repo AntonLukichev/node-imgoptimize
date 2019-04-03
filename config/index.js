@@ -1,3 +1,11 @@
+const fs = require('fs')
+const { COPYFILE_EXCL } = fs.constants
+
+try {
+  fs.copyFileSync('./config/config.example.js', './config/config.js', COPYFILE_EXCL)
+  fs.copyFileSync('./config/server.example.js', './config/server.js', COPYFILE_EXCL)
+} catch (e) {}
+
 const server = require('./server')
 const config = require('./config')
 const axios = require('./axios')
