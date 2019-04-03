@@ -4,7 +4,8 @@
   "description": "Proxy server for image optimization on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "pretest": "eslint --ignore-path .gitignore ."
   },
   "repository": {
@@ -29,7 +30,7 @@
   },
   "homepage": "https://github.com/AntonLukichev/node-imgoptimize#readme",
   "engines": {
-    "node": "6.6.0"
+    "node": "10.x"
   },
   "dependencies": {
     "axios": "^0.18.0",
