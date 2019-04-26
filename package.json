@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint-fix": "eslint --ignore-path .gitignore . --fix"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
     "fastify-static": "^2.4.0",
     "fastify-swagger": "^2.3.1",
     "fastify-url-data": "^2.2.2",
-    "sharp": "^0.22.0"
+    "sharp": "^0.22.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
