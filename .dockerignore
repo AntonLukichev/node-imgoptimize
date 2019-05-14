@@ -1,0 +1,11 @@
+# Imgresizer
+small_img
+source_img
+config/config.js
+config/server.js
+
+# WebStrom
+.idea/
+package-lock.json
+
+.git
