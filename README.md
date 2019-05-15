@@ -34,6 +34,15 @@ Requires node >= 6.0, but I recommended use 10.x LTS
 [Install on Heroku](docs/install_heroku.md)<br>
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AntonLukichev/node-imgoptimize)
 
+# use Docker
+
+```bash
+$ git clone https://github.com/AntonLukichev/node-imgoptimize.git
+$ cd ./node-imgoptimize
+$ docker build -t node-imgoptimize .
+$ docker run -it --rm -p 3001:3001 node-imgoptimize
+```
+
 ## Example Usage
 
 ```
