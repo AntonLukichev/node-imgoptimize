@@ -6,7 +6,7 @@ config/server.js
 
 # WebStrom
 .idea/
-package-lock.json
+#package-lock.json
 
 # Logs
 logs
