@@ -7,15 +7,13 @@
 ```text
 $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 $ sudo apt-get install -y nodejs build-essential
+$ npm install -g yarn
 ```
 
 ### Clone project
 ```text
 $ git clone https://github.com/AntonLukichev/node-imgoptimize.git
-$ npm install
-$ cd ./node-imgoptimize/config/
-$ cp ./config.example.js ./config.js
-$ cp ./server.example.js ./server.js
+$ yarn install
 
 $ cd ..
 $ chmod +x ./app.js
@@ -23,7 +21,7 @@ $ chmod +x ./app.js
 
 ### Install PM2
 ```text
-$ npm i -g pm2
+$ yarn i -g pm2
 $ pm2 start app.js
 $ pm2 startup
 ```

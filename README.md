@@ -15,20 +15,13 @@ Automatic recognition of browser support formats WebP
 
 ## Install
 ```bash
-$ npm install node-imgoptimize --save
-
-$ cd ./config/
-$ cp ./config.example.js ./config.js
-$ cp ./server.example.js ./server.js
+$ yarn install node-imgoptimize --save
 ```
 ```bash
 $ git clone https://github.com/AntonLukichev/node-imgoptimize.git
-$ npm install
-$ cd ./node-imgoptimize/config/
-$ cp ./config.example.js ./config.js
-$ cp ./server.example.js ./server.js
+$ yarn install
 ```
-Requires node >= 8.0, but I recommended use 10.x LTS
+Requires node >= 8.0, but I recommended use >= 10.0 LTS
 
 [Install as service on Ubuntu](docs/install_ubuntu.md)<br>
 [Install on Heroku](docs/install_heroku.md)<br>
@@ -56,7 +49,7 @@ support parameters (after "?"):
 **fm** - image format, list in config.js and default jpeg or webp (if browser supports it);<br>
 
 ## Example config
-Edit defaults config for you need  
+Edit defaults config for you need (automatically created after the first run)
 ```
 ./config/config.js
 
