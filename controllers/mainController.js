@@ -4,7 +4,7 @@ const qs = require('querystring')
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
-const boom = require('boom')
+const boom = require('@hapi/boom')
 const CONFIG = require('../config')
 
 const fastify = require('fastify')({ logger: { level: CONFIG.logLevel } })

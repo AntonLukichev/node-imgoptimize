@@ -1,5 +1,5 @@
 const CONFIG = require('../config')
-const boom = require('boom')
+const boom = require('@hapi/boom')
 const fastify = require('fastify')({ logger: { level: CONFIG.logLevel } })
 const mainController = require('./mainController')
 

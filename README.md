@@ -28,7 +28,7 @@ $ cd ./node-imgoptimize/config/
 $ cp ./config.example.js ./config.js
 $ cp ./server.example.js ./server.js
 ```
-Requires node >= 6.0, but I recommended use 10.x LTS
+Requires node >= 8.0, but I recommended use 10.x LTS
 
 [Install as service on Ubuntu](docs/install_ubuntu.md)<br>
 [Install on Heroku](docs/install_heroku.md)<br>
@@ -40,7 +40,7 @@ Requires node >= 6.0, but I recommended use 10.x LTS
 $ git clone https://github.com/AntonLukichev/node-imgoptimize.git
 $ cd ./node-imgoptimize
 $ docker build -t node-imgoptimize .
-$ docker run -it --rm -p 3001:3001 node-imgoptimize
+$ docker run -it --rm -p 3000:3000 node-imgoptimize
 ```
 
 ## Example Usage
@@ -79,16 +79,15 @@ v0.3.0:
 v0.4.0:
 - [x] custom log level
 - [x] documentation API in Swagger
-- [ ] expand API
+- [x] add docker
 
 I plan to implement in the future:
-* add log rotation
+* expand API
 * add options Low Quality Image Placeholders (LQIP)
 * add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
 * add test (Jest, Mocha)
-* add docker
 * support PAAS (Herocu, Zeit, Nanobox...)
 * add support HTTP2
 * add security protection

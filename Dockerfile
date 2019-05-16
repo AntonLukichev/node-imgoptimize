@@ -1,6 +1,7 @@
-FROM node:alpine
-# FROM node:carbon   for development
+#FROM node:alpine
+FROM node:carbon
 ENV TERM="xterm-256color"
+LABEL maintainer="anton@lukichev.pro"
 
 WORKDIR /app
 
@@ -13,5 +14,5 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY . .
 
-EXPOSE 3001
+EXPOSE 3000
 CMD [ "nodemon", "app.js" ]

@@ -25,15 +25,13 @@ routes.forEach((route, index) => {
 
 const start = async () => {
   try {
+    // eslint-disable-next-line handle-callback-err
     await fastify.listen(process.env.PORT || CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
-      if (err) {
-        fastify.log.error(err)
-        process.exit(1)
-      }
+      console.log(`Server listening on ${address}`)
     })
     fastify.swagger()
   } catch (err) {
-    fastify.log.error(err)
+    console.log('Error starting server:', err)
     process.exit(1)
   }
 }

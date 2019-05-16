@@ -1,6 +1,6 @@
 {
   "name": "node-imgoptimize",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Proxy server for image optimization on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
@@ -33,19 +33,19 @@
   },
   "homepage": "https://github.com/AntonLukichev/node-imgoptimize#readme",
   "engines": {
-    "node": "10.x",
+    "node": "8.x",
     "npm": "6.x"
   },
   "dependencies": {
+    "@hapi/boom": "^7.4.2",
     "axios": "^0.18.0",
-    "boom": "^7.3.0",
     "fastify": "^2.3.0",
     "fastify-response-time": "^1.1.0",
     "fastify-static": "^2.4.0",
     "fastify-swagger": "^2.4.0",
     "fastify-url-data": "^2.2.2",
     "sharp": "^0.22.1",
-    "snyk": "^1.163.3"
+    "snyk": "^1.165.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
