@@ -3,12 +3,12 @@ FROM node:carbon
 ENV TERM="xterm-256color"
 LABEL maintainer="anton@lukichev.pro"
 
+RUN npm install -g nodemon yarn
+
 WORKDIR /app
 
-RUN npm install -g nodemon
-
-COPY package*.json .
-RUN npm install
+COPY package.json .
+RUN yarn install
 # RUN npm install --production
 ENV PATH /app/node_modules/.bin:$PATH
 

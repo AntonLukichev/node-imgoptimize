@@ -7,9 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "eslint --ignore-path .gitignore .",
-    "lint-fix": "eslint --ignore-path .gitignore . --fix",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "lint-fix": "eslint --ignore-path .gitignore . --fix"
   },
   "repository": {
     "type": "git",
@@ -33,8 +31,8 @@
   },
   "homepage": "https://github.com/AntonLukichev/node-imgoptimize#readme",
   "engines": {
-    "node": "8.x",
-    "npm": "6.x"
+    "node": ">=8.x",
+    "npm": ">=6.x"
   },
   "dependencies": {
     "@hapi/boom": "^7.4.2",
@@ -55,6 +53,5 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-promise": "^4.1.1",
     "nodemon": "^1.18.11"
-  },
-  "snyk": true
+  }
 }
