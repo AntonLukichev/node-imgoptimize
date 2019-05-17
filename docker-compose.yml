@@ -4,8 +4,6 @@ services:
     build:
       context: "."
       dockerfile: ./Dockerfile
-      args:
-        SHARP_DIST_BASE_URL: "https://github.com/lovell/sharp-libvips/releases/download/v8.7.4/libvips-8.7.4-linux-x64.tar.gz"
     image: nginx:alpine
     ports:
       - "3000:3000"
