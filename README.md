@@ -49,6 +49,8 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+see tips for [Docker](docs/docker.md)
+
 ## Example Usage
 
 ```
@@ -109,7 +111,7 @@ I plan to implement in the future:
 If you'd like to lazy load images, I recommend using [lazysizes](https://github.com/aFarkas/lazysizes).
 
 ## FAQ
-#####How add custom favicon
+### How add custom favicon
 Simple copy your favicon.ico file in root directory project
 
 ## Security

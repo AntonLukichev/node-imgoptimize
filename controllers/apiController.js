@@ -21,7 +21,7 @@ exports.getFile = async (req, reply) => {
 
 exports.sharpImage = async (req, reply) => {
   try {
-    const fileId = req.params.id
+    // const fileId = req.params.id
     const options = req.body
     // await (req) => {}
     return options

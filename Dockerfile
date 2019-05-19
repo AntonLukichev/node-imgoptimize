@@ -1,9 +1,9 @@
 FROM node:alpine
-#FROM node:carbon
+# FROM node:carbon
 ENV \
     TERM="xterm-256color"\
     PLATFORM="linuxmusl-x64"\
-    NODE_ENV=production
+    NODE_ENV="production"
 
 LABEL maintainer="anton@lukichev.pro"
 

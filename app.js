@@ -26,7 +26,8 @@ if (CONFIG.sentryDsn) {
   })
 }
 // fastify.register(require('fastify-response-time'))   error  fastify-response-time\index.js:60    Cannot convert undefined or null to object
-fastify.register(require('fastify-static'), { root: __dirname })
+fastify.register(require('fastify-favicon'))
+// fastify.register(require('fastify-static'), { root: __dirname })
 fastify.register(require('fastify-swagger'), swagger.options)
 
 const startCheck = () => {

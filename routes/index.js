@@ -17,7 +17,7 @@ const routes = [
   },
   {
     method: 'GET',
-    url: '/api/headers/*',
+    url: '/api/headers/',
     handler: mainController.getHeaders
   },
   {
