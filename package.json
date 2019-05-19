@@ -1,6 +1,6 @@
 {
   "name": "node-imgoptimize",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Proxy server for image optimization on Node.JS use (fastify, axios, sharp)",
   "main": "app.js",
   "scripts": {
@@ -8,8 +8,7 @@
     "dev": "set NODE_ENV=development&& nodemon app.js",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "eslint --ignore-path .gitignore . --fix",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
