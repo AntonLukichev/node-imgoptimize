@@ -1,10 +1,12 @@
 # node-imgoptimize
 [![Build Status](https://img.shields.io/travis/AntonLukichev/node-imgoptimize/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/node-imgoptimize)
+[![Maintainability](https://api.codeclimate.com/v1/badges/96d7439c49523ea13e1e/maintainability)](https://codeclimate.com/github/AntonLukichev/node-imgoptimize/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/96d7439c49523ea13e1e/test_coverage)](https://codeclimate.com/github/AntonLukichev/node-imgoptimize/test_coverage)
+
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 ![](https://img.shields.io/node/v/node-imgoptimize/latest.svg?style=flat-square)
 [![License](https://img.shields.io/npm/l/fastify.svg?style=flat-square)](LICENSE)
 
-[![codecov](https://codecov.io/gh/AntonLukichev/node-imgoptimize/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/AntonLukichev/node-imgoptimize)
 [![release](https://img.shields.io/github/release/AntonLukichev/node-imgoptimize.svg?style=flat-square)](https://github.com/AntonLukichev/node-imgoptimize/releases)
 [![NPM downloads](https://img.shields.io/npm/dm/node-imgoptimize.svg?style=flat)](https://www.npmjs.com/package/node-imgoptimize)
 [![Known Vulnerabilities](https://snyk.io/test/github/AntonLukichev/node-imgoptimize/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/AntonLukichev/node-imgoptimize?targetFile=package.json)

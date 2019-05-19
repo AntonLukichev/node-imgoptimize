@@ -21,7 +21,5 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
-script:
-  - test-coverage
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
