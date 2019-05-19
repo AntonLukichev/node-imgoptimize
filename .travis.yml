@@ -8,11 +8,20 @@ notifications:
       - anton@lukichev.pro
     on_success: never # default: change
     on_failure: always # default: always
+env:
+  global:
+    - CC_TEST_REPORTER_ID=8931f8388c66c011327c53ead7d6bad4b31b43185513c00619408440471585ee
 before_install:
-  - "npm i -g npm@^6"
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - npm i -g npm@^6
 cache: npm
 branches:
   only:
     - master
     - /^greenkeeper/.*$/
-script: 'true'  # ToDo npm test
+script:
+  - test-coverage
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

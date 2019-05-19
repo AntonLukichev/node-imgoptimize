@@ -44,6 +44,17 @@ routes.forEach((route) => {
   fastify.route(route)
 })
 
+process.on('SIGINT', async () => {
+  console.log('stopping fastify server')
+  await fastify.close()
+  process.exit(0)
+})
+
+fastify.ready(err => {
+  if (err) throw err
+  fastify.swagger()
+})
+
 const start = async () => {
   try {
     await fastify.listen(process.env.PORT || CONFIG.httpPort, CONFIG.httpHost, (err, address) => {
@@ -53,7 +64,6 @@ const start = async () => {
         console.log(`Server listening on ${address}`)
       }
     })
-    fastify.swagger()
   } catch (err) {
     console.log('Error starting server:', err)
     process.exit(1)
@@ -61,3 +71,5 @@ const start = async () => {
 }
 
 start()
+
+module.exports = fastify

@@ -242,10 +242,17 @@ const getHeaders = async (req, rep) => {
   return req.headers
 }
 
+const getRoot = async (req, rep) => {
+  return {
+    server: 'ok'
+  }
+}
+
 module.exports = {
   createFolder,
   getImage,
   getImageV3,
   getDownloadFileV3,
-  getHeaders
+  getHeaders,
+  getRoot
 }

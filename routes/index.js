@@ -22,6 +22,11 @@ const routes = [
   },
   {
     method: 'GET',
+    url: '/',
+    handler: mainController.getRoot
+  },
+  {
+    method: 'GET',
     url: '/api/test/*',
     handler: mainController.getImageV3
   }
