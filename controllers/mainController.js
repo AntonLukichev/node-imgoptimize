@@ -254,5 +254,10 @@ module.exports = {
   getImageV3,
   getDownloadFileV3,
   getHeaders,
-  getRoot
+  getRoot,
+  getFormat,
+  isPathExists,
+  getSettings,
+  isAllowFileType,
+  isAcceptWebp
 }
