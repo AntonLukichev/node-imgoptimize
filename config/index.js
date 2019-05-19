@@ -25,5 +25,6 @@ module.exports = {
   allowFormat: config.allowFormat,
   jpegOptions: config.jpegOptions,
   webpOptions: config.webpOptions,
-  axiosConfig: axios.axiosConfig
+  axiosConfig: axios.axiosConfig,
+  sentryDsn: server.sentriDsn
 }

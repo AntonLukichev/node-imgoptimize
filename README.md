@@ -24,16 +24,27 @@ $ yarn install
 Requires node >= 8.0, but I recommended use >= 10.0 LTS
 
 [Install as service on Ubuntu](docs/install_ubuntu.md)<br>
+
+## Heroku
+example https://node-imgoptimize.herokuapp.com/
+
 [Install on Heroku](docs/install_heroku.md)<br>
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AntonLukichev/node-imgoptimize)
 
-# use Docker
+## use Docker
 
 ```bash
 $ git clone https://github.com/AntonLukichev/node-imgoptimize.git
 $ cd ./node-imgoptimize
 $ docker build -t node-imgoptimize .
-$ docker run -it --rm -p 3000:3000 node-imgoptimize
+$ docker run -it --rm -p 3000:3000 -e NODE_ENV=production node-imgoptimize
+```
+
+```bash
+$ git clone https://github.com/AntonLukichev/node-imgoptimize.git
+$ cd ./node-imgoptimize
+$ docker-compose build
+$ docker-compose up
 ```
 
 ## Example Usage
@@ -73,6 +84,9 @@ v0.4.0:
 - [x] custom log level
 - [x] documentation API in Swagger
 - [x] add docker
+
+v0.5.0:
+- [x] add monitoring errors sentry.io
 
 I plan to implement in the future:
 * expand API

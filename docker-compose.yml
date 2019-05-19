@@ -4,7 +4,9 @@ services:
     build:
       context: "."
       dockerfile: ./Dockerfile
-    image: nginx:alpine
+    image: node:alpine
+    environment:
+      NODE_ENV: production
     ports:
       - "3000:3000"
     volumes:

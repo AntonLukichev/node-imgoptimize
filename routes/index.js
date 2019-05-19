@@ -17,13 +17,13 @@ const routes = [
   },
   {
     method: 'GET',
-    url: '/api/test/*',
-    handler: mainController.getImageV3
+    url: '/api/headers/*',
+    handler: mainController.getHeaders
   },
   {
     method: 'GET',
-    url: '/api/test2/*',
-    handler: mainController.getHeaders
+    url: '/api/test/*',
+    handler: mainController.getImageV3
   }
 ]
 

@@ -2,7 +2,8 @@ FROM node:alpine
 #FROM node:carbon
 ENV \
     TERM="xterm-256color"\
-    PLATFORM="linuxmusl-x64"
+    PLATFORM="linuxmusl-x64"\
+    NODE_ENV=production
 
 LABEL maintainer="anton@lukichev.pro"
 
@@ -17,5 +18,4 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY . .
 
-EXPOSE 3000
 CMD [ "nodemon", "app.js" ]
