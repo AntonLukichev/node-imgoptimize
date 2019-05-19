@@ -84,7 +84,7 @@ v0.4.0:
 - [x] custom log level
 - [x] documentation API in Swagger
 - [x] add docker
-- [x] support Herocu
+- [x] support Heroku
 
 v0.5.0:
 - [x] add monitoring errors sentry.io
@@ -97,7 +97,7 @@ I plan to implement in the future:
 * add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
-* support PAAS (~~Herocu~~, Zeit, Nanobox...)
+* support PAAS (~~Heroku~~, Zeit, Nanobox...)
 * add support HTTP2
 * add security protection
 * add support redis/mongo for cache info
