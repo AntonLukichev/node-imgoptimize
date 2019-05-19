@@ -84,9 +84,12 @@ v0.4.0:
 - [x] custom log level
 - [x] documentation API in Swagger
 - [x] add docker
+- [x] support Herocu
 
 v0.5.0:
 - [x] add monitoring errors sentry.io
+- [x] default favicon
+- [ ] add tests
 
 I plan to implement in the future:
 * expand API
@@ -94,8 +97,7 @@ I plan to implement in the future:
 * add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
 * add support another formats (GIF, PNG, SVG...)
 * divide the functionality into modules up to version 1.0.0
-* add test (Jest, Mocha)
-* support PAAS (Herocu, Zeit, Nanobox...)
+* support PAAS (~~Herocu~~, Zeit, Nanobox...)
 * add support HTTP2
 * add security protection
 * add support redis/mongo for cache info
@@ -105,6 +107,8 @@ I plan to implement in the future:
 If you'd like to lazy load images, I recommend using [lazysizes](https://github.com/aFarkas/lazysizes).
 
 ## FAQ
+#####How add custom favicon
+Simple copy your favicon.ico file in root directory project
 
 ## Security
 [Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/)

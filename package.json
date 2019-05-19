@@ -7,7 +7,8 @@
     "start": "node app.js",
     "dev": "set NODE_ENV=development&& nodemon app.js",
     "lint": "eslint --ignore-path .gitignore .",
-    "lint-fix": "eslint --ignore-path .gitignore . --fix"
+    "lint-fix": "eslint --ignore-path .gitignore . --fix",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "@sentry/node": "5.2.0",
     "axios": "^0.18.0",
     "fastify": "^2.3.0",
+    "fastify-favicon": "^2.0.0",
     "fastify-response-time": "^1.1.0",
     "fastify-static": "^2.4.0",
     "fastify-swagger": "^2.4.0",
@@ -53,6 +55,7 @@
     "eslint-plugin-node": "^9.0.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.18.11"
   }
 }

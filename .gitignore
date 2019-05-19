@@ -1,8 +1,9 @@
-# Imgresizer
+# node-imgoptimize
 small_img
 source_img
 config/config.js
 config/server.js
+favicon.ico
 
 # WebStrom
 .idea/
