@@ -108,21 +108,27 @@ I plan to implement in the future:
 * add image operations (rotate, blur, normalise...)
 
 ## Lazy loading
+
 If you'd like to lazy load images, I recommend using [lazysizes](https://github.com/aFarkas/lazysizes).
 
 ## FAQ
+
 ### How add custom favicon
+
 Simple copy your favicon.ico file in root directory project
 
 ## Security
+
 [Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/)
 
 [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html)
 
 ## Contributing
+
 [See the CONTRIBUTING file here](CONTRIBUTING.md)
 
 ## License
+
 [MIT](LICENSE) 
 
 Copyright (c) [Anton Lukichev](https://github.com/AntonLukichev)
