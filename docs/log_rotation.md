@@ -1,8 +1,11 @@
 ## Show logs
+
 ```text
 $ pm2 logs
 ```
-Logs file 
+
+Logs file
+
 ```text
 $ ls -l ~/.pm2/logs
 ```
@@ -14,6 +17,7 @@ $ pm2 install pm2-logrotate
 ```
 
 ## Settings
+
 https://github.com/keymetrics/pm2-logrotate#configure
 
 ```text

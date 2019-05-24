@@ -1,4 +1,5 @@
 # node-imgoptimize
+
 [![Build Status](https://img.shields.io/travis/AntonLukichev/node-imgoptimize/master.svg?style=flat-square)](https://travis-ci.org/AntonLukichev/node-imgoptimize)
 [![Maintainability](https://api.codeclimate.com/v1/badges/96d7439c49523ea13e1e/maintainability)](https://codeclimate.com/github/AntonLukichev/node-imgoptimize/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/96d7439c49523ea13e1e/test_coverage)](https://codeclimate.com/github/AntonLukichev/node-imgoptimize/test_coverage)
@@ -16,18 +17,22 @@ Proxy server for image optimization on Node.JS use (fastify, axios, sharp)
 Automatic recognition of browser support formats WebP
 
 ## Install
+
 ```bash
 $ yarn install node-imgoptimize --save
 ```
+
 ```bash
 $ git clone https://github.com/AntonLukichev/node-imgoptimize.git
 $ yarn install
 ```
+
 Requires node >= 8.0, but I recommended use >= 10.0 LTS
 
 [Install as service on Ubuntu](docs/install_ubuntu.md)<br>
 
 ## Heroku
+
 example https://node-imgoptimize.herokuapp.com/
 
 [Install on Heroku](docs/install_heroku.md)<br>
@@ -56,6 +61,7 @@ see tips for [Docker](docs/docker.md)
 ```
 {url}?w=500&q=80
 ```
+
 support parameters (after "?"):
 
 **w** - image width;<br>
@@ -64,7 +70,9 @@ support parameters (after "?"):
 **fm** - image format, list in config.js and default jpeg or webp (if browser supports it);<br>
 
 ## Example config
+
 Edit defaults config for you need (automatically created after the first run)
+
 ```
 ./config/config.js
 
@@ -81,31 +89,35 @@ v0.2.0:
 - [x] support a large number of files
 
 v0.3.0:
+
 - [x] add multiple path URI
 - [x] add JPEG and WebP options
 
 v0.4.0:
+
 - [x] custom log level
 - [x] documentation API in Swagger
 - [x] add docker
 - [x] support Heroku
 
 v0.5.0:
+
 - [x] add monitoring errors sentry.io
 - [x] default favicon
 - [ ] add tests
 
 I plan to implement in the future:
-* expand API
-* add options Low Quality Image Placeholders (LQIP)
-* add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
-* add support another formats (GIF, PNG, SVG...)
-* divide the functionality into modules up to version 1.0.0
-* support PAAS (~~Heroku~~, Zeit, Nanobox...)
-* add support HTTP2
-* add security protection
-* add support redis/mongo for cache info
-* add image operations (rotate, blur, normalise...)
+
+- expand API
+- add options Low Quality Image Placeholders (LQIP)
+- add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
+- add support another formats (GIF, PNG, SVG...)
+- divide the functionality into modules up to version 1.0.0
+- support PAAS (~~Heroku~~, Zeit, Nanobox...)
+- add support HTTP2
+- add security protection
+- add support redis/mongo for cache info
+- add image operations (rotate, blur, normalise...)
 
 ## Lazy loading
 
@@ -129,6 +141,6 @@ Simple copy your favicon.ico file in root directory project
 
 ## License
 
-[MIT](LICENSE) 
+[MIT](LICENSE)
 
 Copyright (c) [Anton Lukichev](https://github.com/AntonLukichev)

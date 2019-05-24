@@ -11,15 +11,16 @@ Fixes # (issue)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] This change requires a documentation update
 
-\* *please delete options that are not relevant.*
+\* _please delete options that are not relevant._
 
 # How Has This Been Tested?
 
-Please describe the tests that you ran to verify your changes. 
+Please describe the tests that you ran to verify your changes.
 
 **Test Configuration**:
-* Node.js version:
-* OS:
+
+- Node.js version:
+- OS:
 
 # Checklist:
 

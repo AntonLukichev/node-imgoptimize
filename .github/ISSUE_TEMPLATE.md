@@ -1,6 +1,6 @@
 # Prerequisites
 
-Please answer the following questions for yourself before submitting an issue. 
+Please answer the following questions for yourself before submitting an issue.
 
 **YOU MAY DELETE THE PREREQUISITES SECTION.**
 
@@ -33,8 +33,8 @@ Please provide detailed steps for reproducing the issue.
 
 Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
 
-* Node.js Version:
-* OS:
+- Node.js Version:
+- OS:
 
 ### Failure Logs
 
