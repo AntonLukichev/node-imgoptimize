@@ -18,13 +18,26 @@ Automatic recognition of browser support formats WebP
 
 ## Install
 
+### Yarn
+
 ```bash
-$ yarn install node-imgoptimize --save
+yarn add node-imgoptimize
 ```
 
 ```bash
-$ git clone https://github.com/AntonLukichev/node-imgoptimize.git
-$ yarn install
+git clone https://github.com/AntonLukichev/node-imgoptimize.git
+yarn install
+```
+
+### NPM
+
+```bash
+npm install node-imgoptimize --save
+```
+
+```bash
+git clone https://github.com/AntonLukichev/node-imgoptimize.git
+npm install
 ```
 
 Requires node >= 8.0, but I recommended use >= 10.0 LTS
