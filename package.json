@@ -46,7 +46,7 @@
     "fastify-swagger": "^2.4.0",
     "fastify-url-data": "^2.2.2",
     "sharp": "^0.22.1",
-    "snyk": "^1.173.1"
+    "snyk": "^1.174.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -58,7 +58,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
-    "prettier": "1.18.1"
+    "prettier": "1.18.2"
   },
   "jest": {
     "verbose": true
