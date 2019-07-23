@@ -46,14 +46,14 @@
     "fastify-response-time": "^1.1.0",
     "fastify-static": "^2.5.0",
     "fastify-swagger": "^2.4.0",
-    "fastify-url-data": "^2.2.2",
+    "fastify-url-data": "^2.3.0",
     "sharp": "^0.22.1",
-    "snyk": "^1.189.0"
+    "snyk": "^1.197.0"
   },
   "devDependencies": {
-    "eslint": "^6.0.0",
+    "eslint": "^6.1.0",
     "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.13.6",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
