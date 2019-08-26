@@ -25,7 +25,7 @@ $ chmod +x ./app.js
 ### Install PM2
 
 ```text
-$ yarn i -g pm2
+$ npm i -g pm2
 $ pm2 start app.js
 $ pm2 startup
 ```
