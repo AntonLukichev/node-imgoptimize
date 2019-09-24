@@ -139,10 +139,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@hapi/boom@^7.4.9":
-  version "7.4.9"
-  resolved "https://registry.yarnpkg.com/@hapi/boom/-/boom-7.4.9.tgz#d3ca6142cef4b79db98981cfb95d0114d01882ac"
-  integrity sha512-grHr7kbkvgN8UBht1dFoNYj7XMcozYC/tDJ+W7NVnLha4ZsU9UQvjwm24Qhbdrr3+o+mRfxvHBLFGBAJvkz4XQ==
+"@hapi/boom@^7.4.10":
+  version "7.4.10"
+  resolved "https://registry.yarnpkg.com/@hapi/boom/-/boom-7.4.10.tgz#fae360a8f6a52fbb5bfbe179982d74351ee1df1d"
+  integrity sha512-QCeJhQTtY8U3N5H8IO/PMp6sMSCW0189ylquqfHX9PJkxSHvqKAgNzKvg5APjOKK1dcK8obTeg/UICkb3b3fXw==
   dependencies:
     "@hapi/hoek" "8.x.x"
 
