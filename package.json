@@ -38,7 +38,7 @@
     "npm": ">=6.x"
   },
   "dependencies": {
-    "@hapi/boom": "^8.0.0",
+    "@hapi/boom": "^8.0.1",
     "@sentry/node": "5.6.2",
     "axios": "^0.19.0",
     "fastify": "^2.8.0",
@@ -51,7 +51,7 @@
     "snyk": "^1.208.0"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^6.5.0",
     "eslint-config-standard": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.16.0",
@@ -59,7 +59,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.3",
     "prettier": "1.18.2"
   },
   "jest": {
