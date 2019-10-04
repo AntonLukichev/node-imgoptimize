@@ -8,7 +8,9 @@
     "dev": "set NODE_ENV=development&& nodemon app.js",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "eslint --ignore-path .gitignore . --fix",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -48,7 +50,7 @@
     "fastify-swagger": "^2.4.0",
     "fastify-url-data": "^2.3.0",
     "sharp": "^0.23.0",
-    "snyk": "^1.208.0"
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
@@ -64,5 +66,6 @@
   },
   "jest": {
     "verbose": true
-  }
+  },
+  "snyk": true
 }
