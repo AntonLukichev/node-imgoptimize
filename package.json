@@ -50,7 +50,7 @@
     "fastify-swagger": "^2.4.0",
     "fastify-url-data": "^2.3.0",
     "sharp": "^0.23.0",
-    "snyk": "^1.240.2"
+    "snyk": "^1.258.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
