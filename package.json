@@ -49,14 +49,13 @@
     "fastify-static": "^2.5.0",
     "fastify-swagger": "^2.4.0",
     "fastify-url-data": "^2.3.0",
-    "sharp": "^0.23.0",
-    "snyk": "^1.278.2"
+    "sharp": "^0.23.0"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.16.0",
+    "eslint-plugin-jest": "^23.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
@@ -66,6 +65,5 @@
   },
   "jest": {
     "verbose": true
-  },
-  "snyk": true
+  }
 }
