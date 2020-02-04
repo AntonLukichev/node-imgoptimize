@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^9.0.0",
-    "@sentry/node": "^5.11.1",
+    "@sentry/node": "^5.12.3",
     "axios": "^0.19.2",
     "fastify": "^2.11.0",
     "fastify-favicon": "^2.0.0",
