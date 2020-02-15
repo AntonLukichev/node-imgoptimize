@@ -117,10 +117,15 @@ v0.5.0:
 
 - [x] add monitoring errors sentry.io
 - [x] default favicon
-- [ ] add tests
+- [x] add tests
+
+v1.0.0:
+
+- [ ] migrate Typescript and NestJS
 
 I plan to implement in the future:
 
+- add CORS
 - expand API
 - add options Low Quality Image Placeholders (LQIP)
 - add Client Hints (headers DPR, Viewport-Width, Width) for support Chrome, Opera, Android Chrome
