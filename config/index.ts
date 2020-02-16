@@ -1,15 +1,21 @@
-const utils = require('../utils')
+// const utils = require('../utils')
+/* import cpSync from '../utils';
 
-utils.cpSync('./config/config.example.js', './config/config.js')
-utils.cpSync('./config/server.example.js', './config/server.js')
+cpSync('./config/config.example.js', './config/config.js');
+cpSync('./config/server.example.json', './config/server.json');
 
 const server = require('./server')
 const config = require('./config')
-const axios = require('./axios')
-module.exports = {
+const axios = require('./axios') */
+
+import server from './server.json';
+// import config from './config';
+// import axiosConfig from './axios';
+
+export default {
   httpHost: server.httpHost,
   httpPort: server.httpPort,
-  logLevel: server.logLevel,
+  /* logLevel: server.logLevel,
   baseURL: config.baseURL,
   pathURI: config.pathURI,
   defaultWidth: config.width,
@@ -22,6 +28,6 @@ module.exports = {
   allowFormat: config.allowFormat,
   jpegOptions: config.jpegOptions,
   webpOptions: config.webpOptions,
-  axiosConfig: axios.axiosConfig,
-  sentryDsn: server.sentriDsn
-}
+  axiosConfig: axiosConfig,
+  sentryDsn: server.sentriDsn */
+};

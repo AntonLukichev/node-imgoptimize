@@ -28,4 +28,4 @@ module.exports = {
     lossless: false, // use lossless compression mode
     nearLossless: false //  use near_lossless compression mode
   }
-}
+};

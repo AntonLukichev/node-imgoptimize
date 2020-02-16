@@ -89,7 +89,7 @@ Edit defaults config for you need (automatically created after the first run)
 ```
 ./config/config.js
 
-./config/server.js
+./config/server.json
 
 ```
 
