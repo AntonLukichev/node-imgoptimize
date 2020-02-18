@@ -14,10 +14,10 @@ async function bootstrap() {
   );
 
   const options = new DocumentBuilder()
-    .setTitle('Node-imgoptimize example')
-    .setDescription('The Node-imgoptimize API description')
-    .setVersion('1.0.0')
-    .addTag('webp')
+    .setTitle('Swagger node-imgoptimize API')
+    .setDescription(process.env.npm_package_description)
+    .setVersion(process.env.npm_package_version)
+    .addTag('api')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
