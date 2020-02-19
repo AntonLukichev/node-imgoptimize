@@ -1,7 +1,7 @@
 {
   "name": "node-imgoptimize",
   "version": "1.0.0",
-  "description": "CDN for image optimization on NodeJS",
+  "description": "CDN with automatic image optimization",
   "main": "app.js",
   "scripts": {
     "prebuild": "rimraf dist",
