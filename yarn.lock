@@ -1903,10 +1903,10 @@ fastify-static@^2.5.1, fastify-static@^2.6.0:
     readable-stream "^3.4.0"
     send "^0.16.0"
 
-fastify-swagger@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-2.5.0.tgz#961362f009f730b248fc11fb058e43543b18fb6b"
-  integrity sha512-WF3LpwwZunLtxzs1Dukwg7P4uBR9f2cwXL/JKD5D4O9Leq/S2QUfMNZg0eHxe4bJy1aUS9tt7IAHvY3ybgbApg==
+fastify-swagger@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-2.5.1.tgz#bd3fa7c30b21fb9055935c3f3088b5b84855f883"
+  integrity sha512-KhDu1Bo45eCm8jk9uyenL1OsGyf2I6swnk1xMT5tZmCB88T5BLu5+3wOzsH5AR/suCZ9n/TeeRFXyTEJu8Oj2w==
   dependencies:
     "@types/swagger-schema-official" "^2.0.20"
     fastify-plugin "^1.6.0"
