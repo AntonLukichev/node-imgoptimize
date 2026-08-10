@@ -32,6 +32,9 @@ const parseReq = (req, acceptWebp) => {
   data.img.w = parseInt(data.query.w) || CONFIG.defaultWidth
   data.img.h = parseInt(data.query.h) || CONFIG.defaultHeight
   data.img.q = parseInt(data.query.q) || CONFIG.defaultQuality
+  if (req.headers['save-data'] === 'on') {
+    data.img.q = Math.min(data.img.q, 50)
+  }
   if (acceptWebp && !data.query.fm) {
     data.img.fm = 'webp'
   } else {
